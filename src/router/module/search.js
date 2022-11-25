@@ -8,5 +8,13 @@ const SearchRoutes = [
       //hidden: true,
     },
   },
+  {
+    path: "/",
+    name: "Home",
+    component: () => import("../../views/home/index.vue"),
+    meta: {
+      //hidden: true,
+    },
+  },
 ];
 export default SearchRoutes;
