@@ -3,11 +3,14 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 
 import Search from './module/search.js'//搜索页路由导入
+import User from './module/user.js'//个人中心路由导入
+import Login from './module/login.js'
 
 const routes = [
 
   ...Search,//搜索页展示
- 
+  ...User, //个人中心
+  ...Login //登录
 ]
 
 

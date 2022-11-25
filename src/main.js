@@ -6,9 +6,9 @@ import 'element-plus/dist/index.css'
 import "./index.css";
 import App from "./App.vue";
 import "reset-css";
-import router from './router'
+import router from './router';
 
-
+ 
 createApp(App)
 .use(router)
 .use(ElementPlus, { size: 'small', zIndex: 3000, locale: zhCn, })
