@@ -8,7 +8,7 @@
           <el-image
             style="width: 19px; height: 19px"
             :src="url"
-            :fit="fit"
+            
           ></el-image>
           <h3>单件包邮</h3>
         </div>
@@ -62,7 +62,8 @@ const url = "https://yanxuan.nosdn.127.net/15997181361146549.png";
 </script>
 
 <style lang="less">
-* {
+
+ * {
   margin: 0;
   padding: 0;
 }
@@ -73,6 +74,14 @@ html {
 .box {
   width: 100%;
   height: 100%;
+ h4{
+    width: 100px;
+    background: #cbd2d4;
+    border-radius: 3px;
+    margin: 5px auto;
+    padding: 3px;
+
+ }
 }
 .container {
   width: 90%;
@@ -80,7 +89,6 @@ html {
   padding: 10px;
   background: #f4f4f4;
   border-radius: 20px;
-  
 }
 .top {
   width: 100%;
@@ -89,6 +97,7 @@ html {
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
+  
 }
 .top .left {
   display: flex;
