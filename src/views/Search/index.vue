@@ -1,5 +1,8 @@
 <template>
   <div class="search-container">
+      <div class="search-container-content">
+
+        <!-- 搜索输入框 -->
     <div class="search-input">
       <el-input
         v-model.enter="searchVal"
@@ -7,10 +10,13 @@
         :placeholder="placeholderText"
         :prefix-icon="Search"
         @keyup.enter.native="searcHistory"
+        @input="handleSearchInput"
         clearable
       />
       <span>取消</span>
     </div>
+    <div v-show="!searchVal">
+    <!-- 搜索历史记录 -->
     <div class="search-history" v-if="searchH.length">
       <div class="search-history-text" >
         <span >历史记录</span>
@@ -26,6 +32,7 @@
         </li>
       </ul>
     </div>
+    <!-- 热门搜索 -->
     <div class="search-hot">
       <div class="search-hot-text">热门搜索</div>
       <ul class="search-hot-list">
@@ -39,12 +46,19 @@
       </ul>
     </div>
   </div>
+  <div v-show="searchVal">
+    <KeywordList :searchVal="searchVal"></KeywordList>
+  </div>
+      </div>
+  </div>
 </template>
 
 <script setup>
-import { onMounted, ref, reactive } from "vue";
+
+import { onMounted, ref } from "vue";
 import { reqSearchInit } from "@/api/search";
 import { Search } from "@element-plus/icons-vue";
+import KeywordList from "./KeywordList.vue"
 let searchVal = ref("");
 let searchHotList = ref([]);
 let searchH = ref([]);
@@ -86,6 +100,9 @@ const searcHistory = (e) => {
 let deleHistory=()=>{
   searchH.value=[];
   localStorage.setItem("searchl", JSON.stringify(searchH.value));
+}
+let handleSearchInput=()=>{
+
 }
 </script>
 
