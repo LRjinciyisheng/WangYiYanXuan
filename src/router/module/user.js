@@ -3,8 +3,8 @@ const UserRoutes = [
     {
       path: "/user",
       name: "User",
-      component: () => import("@/views/User/index.vue"),
-      meta: {
+        component: () => import("@/views/User/index.vue"),
+        meta: {
         //hidden: true,
        
       },

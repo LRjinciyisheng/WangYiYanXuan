@@ -1,11 +1,12 @@
 <template>
     <!-- 整体的大盒子 -->
     <div class="box">
-        <!-- 顶部的黑盒子 -->
-        <div class="user" @click="gologin">
-            <!-- <router-link to="/User/login"></router-link> -->
+        <!-- 顶部的黑盒子@click="gologin" -->
+        <div class="user" @click="gologin"  >
+            <!--<router-link to="/login">点击去登录</router-link> -->
             <img src="../../assets/5.jpg"  class="ava">
             <text class="text" >点击登录</text>
+           
             <div class="jt">></div>
         
         </div>
@@ -13,7 +14,9 @@
             <div class="icon"></div>
             <div class="bottom1" v-for="item in 10">
                 <img src="../../assets/5.jpg" class="img1">
-                <text class="text1">我的订单</text>
+                <text class="text1">我的订单
+                    <router-link to="/goshoping">点击去值得买</router-link>
+                </text>
             </div>
         </div>
     </div>
