@@ -1,14 +1,13 @@
 <template>
- <div class="conatienr">
-   <router-view />
- </div>
+  <div class="conatienr">
+    <router-view />
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-}
+  name: "App",
+};
 </script>
 <style lang="less">
-
 </style>
