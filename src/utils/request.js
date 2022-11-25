@@ -1,4 +1,4 @@
-import axios, { type AxiosResponse } from 'axios';
+import axios from 'axios';
 import { ElMessage, ElMessageBox } from 'element-plus';
 
 
@@ -12,7 +12,7 @@ const service = axios.create({
 
 // 添加请求拦截器
 service.interceptors.request.use(
-	(config: any) => {
+	(config) => {
 		//请求携带token[pinia小仓库里面]
 	
 		return config;
