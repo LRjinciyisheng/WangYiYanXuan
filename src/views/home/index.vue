@@ -11,7 +11,7 @@
       <el-button plain class="btn">登录</el-button>
     </div>
     <!-- 文字导航栏 选型卡 -->
-    <el-tabs v-model="activeName" class="demo-tabs">
+    <el-tabs v-model="activeName" stretch class="demo-tabs">
       <el-tab-pane label="推荐" name="推荐"> </el-tab-pane>
       <el-tab-pane
         label="居家生活"
@@ -22,10 +22,10 @@
     </el-tabs>
     <!-- 滚动视图 -->
     <div class="scroll">
-      <div v-show="activeName == '推荐'">
+      <div v-show="activeName == '推荐'" class="scroll-tj">
         <!-- 轮播 -->
-        <el-carousel class="swiper">
-          <el-carousel-item v-for="item in 4" :key="item" class="item">
+        <el-carousel class="swiper" height="150px">
+          <el-carousel-item v-for="banner in 4" :key="banner" class="item">
             <img src="./images/1.jpg" class="banner" alt="" />
           </el-carousel-item>
         </el-carousel>
@@ -58,7 +58,10 @@
         <div class="newPeople">
           <div class="left">
             <div class="left-text">新人专享礼包</div>
-            <img src="./images/1.jpg" alt="" />
+            <img
+              src="https://yanxuan.nosdn.127.net/static-union/1648017994dd2933.png"
+              alt=""
+            />
           </div>
           <div class="right">
             <div class="shang">
@@ -124,9 +127,16 @@
 <script setup lang='ts'>
 import Good from "./good/index.vue";
 import { Search } from "@element-plus/icons-vue";
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import type { TabsPaneContext } from "element-plus";
+// 引入仓库
+import { useHomeStore } from "../../stores/home";
 const activeName = ref("推荐");
+const homeStore = useHomeStore();
+// 页面挂载 获取首页数据
+onMounted(() => {
+  homeStore.getRecommendList();
+});
 </script>
 
 <style scoped lang='less'>
@@ -145,9 +155,11 @@ a {
   height: 100%;
   width: 100%;
   .top {
+    width: 375px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-sizing: border-box;
     padding: 10px;
     .logo {
       width: 69px;
@@ -171,253 +183,262 @@ a {
   }
   .scroll {
     height: 580px;
+    width: 375px;
     overflow: scroll;
     margin-top: -15px;
-    .swiper {
+    .scroll-tj {
       width: 375px;
-      height: 150px;
-      .item {
+      .swiper {
         width: 375px;
         height: 150px;
-        .banner {
+        .item {
           width: 375px;
           height: 150px;
+          .banner {
+            width: 375px;
+            height: 150px;
+          }
         }
       }
-    }
-    .icons {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      margin: 10px 0;
-      .item {
+      .icons {
+        width: 375px;
         display: flex;
-        align-items: center;
-        .icon {
-          width: 16px;
-          height: 16px;
-          margin-right: 5px;
-        }
-        .title {
-          font-size: 12px;
-        }
-      }
-    }
-    .goods {
-      width: 375px;
-      height: 175px;
-      display: flex;
-      flex-wrap: wrap;
-      align-content: space-around;
-      padding: 0 10px;
-      .item {
-        width: 20%;
-        height: 78px;
-        .good {
-          width: 55px;
-          height: 55px;
-        }
-        .title {
-          font-size: 12px;
-          padding: 5px 0 0 3px;
-        }
-      }
-    }
-    .title1 {
-      width: 375px;
-      height: 45px;
-      text-align: center;
-      line-height: 45px;
-      margin-top: 10px;
-    }
-    .newPeople {
-      width: 375px;
-      height: 219px;
-      display: flex;
-      justify-content: center;
-      .left {
-        width: 171px;
-        height: 217px;
-        background: #f9e9cf;
-        margin-right: 3px;
-        .left-text {
-          margin: 20px 0 0 15px;
-        }
-        img {
-          width: 129px;
-          height: 128px;
-          display: block;
-          margin: 20px auto;
-        }
-      }
-      .right {
-        width: 171px;
-        height: 217px;
-        display: flex;
-        flex-direction: column;
-        .shang {
-          width: 171px;
-          height: 107px;
-          background: rgb(250, 237, 239);
-          margin-bottom: 3px;
-          position: relative;
-          .shang-text {
-            margin: 15px 0 0 15px;
-            p {
-              margin-bottom: 5px;
-            }
-            span {
-              font-size: 14px;
-              color: #bbb;
-            }
-          }
-          img {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-          }
-        }
-        .xia {
-          width: 171px;
-          height: 107px;
-          background: rgb(251, 251, 207);
-          position: relative;
-          .xia-text {
-            margin: 15px 0 0 15px;
-          }
-          img {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-          }
-        }
-      }
-    }
-    .title2 {
-      width: 375px;
-      height: 50px;
-      margin: 20px 0 0 15px;
-      line-height: 50px;
-    }
-    .hotSale {
-      width: 375px;
-      height: 305px;
-      .hot-top {
-        width: 100%;
-        display: flex;
-        justify-content: center;
+        justify-content: space-around;
+        margin: 10px 0;
         .item {
-          width: 170px;
-          height: 100px;
-          background: rgb(221, 235, 241);
-          margin: 0 3px;
-          position: relative;
-          .top-text {
-            margin: 30px 0 0 10px;
+          display: flex;
+          align-items: center;
+          .icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
           }
-          img {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            right: 0;
-            top: 0;
+          .title {
+            font-size: 12px;
           }
         }
       }
-      .hot-bottom {
-        width: 100%;
+      .goods {
+        width: 375px;
+        height: 175px;
         display: flex;
         flex-wrap: wrap;
-        padding: 5px 10px;
+        align-content: space-around;
+        padding: 0 10px;
+        box-sizing: border-box;
         .item {
-          width: 82.5px;
-          height: 90px;
-          background: #eee;
-          margin: 3px;
-          .bottom-text {
+          width: 20%;
+          height: 78px;
+          .good {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto;
+            display: block;
+          }
+          .title {
             font-size: 12px;
-            margin: 7px 10px;
+            padding: 5px 0 0 3px;
+            text-align: center;
+          }
+        }
+      }
+      .title1 {
+        width: 375px;
+        height: 45px;
+        text-align: center;
+        line-height: 45px;
+        margin-top: 10px;
+      }
+      .newPeople {
+        width: 375px;
+        height: 219px;
+        display: flex;
+        justify-content: center;
+        .left {
+          width: 171px;
+          height: 217px;
+          background: #f9e9cf;
+          margin-right: 3px;
+          .left-text {
+            margin: 20px 0 0 15px;
           }
           img {
-            width: 60px;
-            height: 60px;
+            width: 129px;
+            height: 128px;
             display: block;
-            margin: 0px auto;
+            margin: 20px auto;
           }
         }
-      }
-    }
-    .lastTwo {
-      width: 375px;
-      height: 155px;
-      display: flex;
-      justify-content: center;
-      margin: 10px 0;
-      .lastTwo-zuo {
-        width: 171.5px;
-        height: 132px;
-        background-image: url("https://yanxuan.nosdn.127.net/static-union/1665495820b48c01.png?imageView&thumbnail=343x264");
-        background-color: #eee;
-        background-size: 100% 100%;
-        margin-right: 5px;
-        .left-text {
-          margin: 10px 0 0 10px;
-        }
-      }
-      .lastTwo-you {
-        width: 171.5px;
-        height: 132px;
-        background-color: #eee;
-        .right-text {
-          margin: 10px 0 0 10px;
-          p {
+        .right {
+          width: 171px;
+          height: 217px;
+          display: flex;
+          flex-direction: column;
+          .shang {
+            width: 171px;
+            height: 107px;
+            background: rgb(250, 237, 239);
             margin-bottom: 3px;
+            position: relative;
+            .shang-text {
+              margin: 15px 0 0 15px;
+              p {
+                margin-bottom: 5px;
+              }
+              span {
+                font-size: 14px;
+                color: #bbb;
+              }
+            }
+            img {
+              width: 100px;
+              height: 100px;
+              position: absolute;
+              right: 0;
+              bottom: 0;
+            }
           }
-          span {
-            font-size: 12px;
-            color: orange;
+          .xia {
+            width: 171px;
+            height: 107px;
+            background: rgb(251, 251, 207);
+            position: relative;
+            .xia-text {
+              margin: 15px 0 0 15px;
+            }
+            img {
+              width: 100px;
+              height: 100px;
+              position: absolute;
+              right: 0;
+              bottom: 0;
+            }
           }
-        }
-        img {
-          width: 75px;
-          height: 75px;
-          display: inline-block;
-          margin: 10px 0 0 5px;
         }
       }
-    }
-    .footer {
-      width: 375px;
-      height: 122px;
-      background: #414141;
-      position: relative;
-      .button {
-        position: absolute;
-        top: 15px;
-        left: 75px;
-        .btn1,
-        .btn2 {
-          margin: 10px;
-          width: 86px;
-          height: 31px;
-          color: #ccc;
-          border-color: #ccc;
-          background: #414141;
+      .title2 {
+        width: 375px;
+        height: 50px;
+        margin: 20px 0 0 15px;
+        line-height: 50px;
+      }
+      .hotSale {
+        width: 375px;
+        height: 305px;
+        .hot-top {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          .item {
+            width: 170px;
+            height: 100px;
+            background: rgb(221, 235, 241);
+            margin: 0 3px;
+            position: relative;
+            .top-text {
+              margin: 30px 0 0 10px;
+            }
+            img {
+              width: 100px;
+              height: 100px;
+              position: absolute;
+              right: 0;
+              top: 0;
+            }
+          }
+        }
+        .hot-bottom {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          padding: 5px 10px;
+          box-sizing: border-box;
+          .item {
+            width: 82.5px;
+            height: 90px;
+            background: #eee;
+            margin: 3px;
+            .bottom-text {
+              font-size: 12px;
+              margin: 7px 10px;
+            }
+            img {
+              width: 60px;
+              height: 60px;
+              display: block;
+              margin: 0px auto;
+            }
+          }
         }
       }
-      .text {
-        font-size: 12px;
-        color: #aaa;
-        text-align: center;
-        position: absolute;
-        top: 80px;
-        left: 75px;
-        .text2 {
-          margin-top: 5px;
+      .lastTwo {
+        width: 375px;
+        height: 155px;
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+        .lastTwo-zuo {
+          width: 171.5px;
+          height: 132px;
+          background-image: url("https://yanxuan.nosdn.127.net/static-union/1665495820b48c01.png?imageView&thumbnail=343x264");
+          background-color: #eee;
+          background-size: 100% 100%;
+          margin-right: 5px;
+          .left-text {
+            margin: 10px 0 0 10px;
+          }
+        }
+        .lastTwo-you {
+          width: 171.5px;
+          height: 132px;
+          background-color: #eee;
+          .right-text {
+            margin: 10px 0 0 10px;
+            p {
+              margin-bottom: 3px;
+            }
+            span {
+              font-size: 12px;
+              color: orange;
+            }
+          }
+          img {
+            width: 75px;
+            height: 75px;
+            display: inline-block;
+            margin: 10px 0 0 5px;
+          }
+        }
+      }
+      .footer {
+        width: 375px;
+        height: 122px;
+        background: #414141;
+        position: relative;
+        .button {
+          position: absolute;
+          top: 15px;
+          left: 75px;
+          .btn1,
+          .btn2 {
+            margin: 10px;
+            width: 86px;
+            height: 31px;
+            color: #ccc;
+            border-color: #ccc;
+            background: #414141;
+          }
+        }
+        .text {
+          font-size: 12px;
+          color: #aaa;
+          text-align: center;
+          position: absolute;
+          top: 80px;
+          left: 75px;
+          .text2 {
+            margin-top: 5px;
+          }
         }
       }
     }
