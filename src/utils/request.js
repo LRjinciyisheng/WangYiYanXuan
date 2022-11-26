@@ -25,8 +25,9 @@ service.interceptors.response.use(
 	async (response) => {
 		// 对响应数据做点什么
 		const res = response.data;
-		if (res.code !== '200') { /* 成功数据的code值为20000/200 */
-			// 统一的错误提示
+		// if (!res || res.code !== 200) { /* 成功数据的code值为20000/200 */
+		if (!res) { /* 成功数据的code值为20000/200 */
+			//统一的错误提示
 			ElMessage({
 				message: (typeof res.data == 'string' && res.data) || res.message || 'Error',
 				type: 'error',

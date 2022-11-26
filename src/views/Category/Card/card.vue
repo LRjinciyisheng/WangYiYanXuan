@@ -18,6 +18,23 @@
 </template>
 
 <script setup lang="ts">
+//引入bus
+import bus from '../../../bus/bus'
+import { ref, onMounted,  reactive } from 'vue'
+//获取小仓库
+import { useCategoryStore } from '../../../stores/category';
+let categoryStore = useCategoryStore();
+
+//挂载完毕的钩子
+onMounted(() => {
+  bus.on('sendCategoryId', () => {
+
+  })
+})
+
+
+
+
 
 </script>
 

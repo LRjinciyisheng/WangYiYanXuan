@@ -3,11 +3,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 
 import Search from './module/search.js'//搜索页路由导入
+import Category from './module/category.js'//搜索页路由导入
+
 
 const routes = [
 
   ...Search,//搜索页展示
- 
+  ...Category,
 ]
 
 
