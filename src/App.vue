@@ -1,6 +1,6 @@
 <template>
   <div class="conatienr">
-    <router-view />
+    <!-- <router-view /> -->
     <Category></Category>
   </div>
 </template>

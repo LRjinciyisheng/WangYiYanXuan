@@ -1,4 +1,6 @@
 import { createApp } from "vue";
+//引入大仓库
+import pinia from './stores'
 //element-plus插件:完整引入
 import ElementPlus from 'element-plus'
 
@@ -17,6 +19,7 @@ for (const name in Elicons) {
   app.component(name, Elicons[name]);
 }
 
-app.use(router)
-.use(ElementPlus, { size: 'small', zIndex: 3000, locale: zhCn, })
+app.use(pinia)
+  .use(router)
+  .use(ElementPlus, { size: 'small', zIndex: 3000, locale: zhCn, })
   .mount("#app");

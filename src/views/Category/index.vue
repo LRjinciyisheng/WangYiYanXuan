@@ -7,16 +7,26 @@
 
     </el-tabs>
 
-
-    <!-- <Card></Card> -->
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
+//引入Card组件
 import Card from './Card/card.vue';
-import { ref } from 'vue'
+//获取小仓库
+import { useCategoryStore } from '../../stores/category';
+let categoryStore = useCategoryStore();
 
-const tabPosition = ref('left')
+//设置tab的方位
+let tabPosition = ref('left')
+
+// //组件挂载完毕发请求
+// onMounted(() => {
+//   //通知pinia仓库发请求
+
+// })
+
 
 </script>
 
