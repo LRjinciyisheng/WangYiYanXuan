@@ -583,6 +583,11 @@ const back = () => {
       }
     }
   }
+  .detail-img{
+    .img{
+      width: 100%;
+    }
+  }
   .detail-img .img1 img {
     height: 63px;
   }
@@ -624,7 +629,7 @@ const back = () => {
     text-align: center;
     background: #eee;
     position: fixed;
-    bottom: 50px;
+    bottom: 100px;
     right: 250px;
   }
 }

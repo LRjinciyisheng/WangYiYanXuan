@@ -3,7 +3,7 @@ const GoodsDetail = [
   {
     path:'/goodsdetail',
     name:'GoodsDetail',
-    component:()=>import("@/views/GoodsDetail/index.vue"),
+    component:()=>import("../../views/GoodsDetail/index.vue"),
     meta:{},
   },
 ];

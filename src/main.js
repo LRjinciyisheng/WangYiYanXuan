@@ -11,9 +11,9 @@ import App from "./App.vue";
 import "reset-css";
 import router from "./router";
 const app = createApp(App);
-for (const name in Elicons) {
-  app.component(name, Elicons[name]);
-}
+// for (const name in Elicons) {
+//   app.component(name, Elicons[name]);
+// }
 
 app.use(pinia)
     .use(router)

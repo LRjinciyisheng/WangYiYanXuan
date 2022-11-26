@@ -5,8 +5,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Search from './module/search.js'//搜索页路由导入
 import ShopCart from './module/shopcart.js'//购物车路由导入
 import Pay from './module/pay.js'//支付页路由导入
-import GoodsDetail from './module/goodsDetail'//商品详情路由导入
-import Home from "./module/home.ts"; //首页路由导入
+import GoodsDetail from './module/goodsDetail.js'//商品详情路由导入
+import Home from "./module/home.js"; //首页路由导入
 
 
 const routes = [

@@ -1,7 +1,7 @@
 <template>
   <div class="conatienr">
-    <!-- <router-view /> -->
-    <Category></Category>
+    <router-view />
+    <!-- <Category></Category> -->
   </div>
 </template>
 
