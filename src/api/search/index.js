@@ -5,4 +5,3 @@ export const reqSearchInit = ()=>request.get('/xhr/search/init.json');
 export const reqSearchAutoComplete = (keywordPrefix)=>request.get('/xhr/search/searchAutoComplete.json', {params: keywordPrefix});
 /* 搜索页请求- 搜索 */
 export const reqSearch = ()=>request.get('/xhr/search/search.json');
-
