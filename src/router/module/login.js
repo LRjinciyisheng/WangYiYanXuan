@@ -1,4 +1,4 @@
-//个人中心路由
+//登录路由
 const LoginRoutes = [
     {
       path: "/login",

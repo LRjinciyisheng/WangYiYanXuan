@@ -1,4 +1,4 @@
-//个人中心路由
+//值得买
 const GoshopingRoutes = [
     {
       path: "/goshoping",

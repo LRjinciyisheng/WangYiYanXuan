@@ -2,7 +2,7 @@
     <!-- 大的盒子 -->
     <div class="box">
         <!-- 头部的广告 -->
-        <div class="gg"><img src="../Login/images/2.jpg" alt=""></div>
+        <div class="gg"><img src="../../assets/6.png" alt=""></div>
         <!-- 第二行的盒子 -->
         <div class="box1">
             <!-- 首页的图标 -->
@@ -57,64 +57,78 @@
         </div>
         <!-- 瀑布流的盒子 -->
         <div class="box3">
-            <div class="text-3">足够用心才足够特别-</div>
-            <div id="macy-container">
-                <div>
-                    <img src="../Login/images/2.jpg" />
-                </div>
+            <!-- <div class="text-3">足够用心才足够特别-</div> -->
+            <div class="box4">
+                <ul class="img-wrapper" v-for="item in 12" :key="item">
+                    <!-- 左侧 -->
+                    <li>
+                        <!-- 大图 -->
+                        <img src="../Login/images/2.jpg" alt="">
+                        <!-- 文字 -->
+                        <text class="li-text1">必买大赏</text>
+
+                        <!-- 下边的盒子 -->
+                        <div class="bottom">
+
+                            <!-- 头像 -->
+                            <img src="../../assets/5.jpg" alt="" class="li-img">
+                            <text class="text-2">选妹</text>
+                            <!--图标 浏览量 -->
+                            <svg t="1669440640506" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="2423" width="15" height="15">
+                                <path
+                                    d="M515.2 224c-307.2 0-492.8 313.6-492.8 313.6s214.4 304 492.8 304 492.8-304 492.8-304S822.4 224 515.2 224zM832 652.8c-102.4 86.4-211.2 140.8-320 140.8s-217.6-51.2-320-140.8c-35.2-32-70.4-64-99.2-99.2-6.4-6.4-9.6-12.8-16-19.2 3.2-6.4 9.6-12.8 12.8-19.2 25.6-35.2 57.6-70.4 92.8-102.4 99.2-89.6 208-144 329.6-144s230.4 54.4 329.6 144c35.2 32 64 67.2 92.8 102.4 3.2 6.4 9.6 12.8 12.8 19.2-3.2 6.4-9.6 12.8-16 19.2C902.4 585.6 870.4 620.8 832 652.8z"
+                                    p-id="2424"></path>
+                                <path
+                                    d="M512 345.6c-96 0-169.6 76.8-169.6 169.6 0 96 76.8 169.6 169.6 169.6 96 0 169.6-76.8 169.6-169.6C681.6 422.4 604.8 345.6 512 345.6zM512 640c-67.2 0-121.6-54.4-121.6-121.6 0-67.2 54.4-121.6 121.6-121.6 67.2 0 121.6 54.4 121.6 121.6C633.6 582.4 579.2 640 512 640z"
+                                    p-id="2425"></path>
+                            </svg>
+                            <text class="li-text2">56k</text>
+                        </div>
+                    </li>
+
+                    <!-- 右侧 -->
+                    <li><img src="../../assets/5.jpg" alt="" class="li-img">
+                        <text class="li-text1">
+                            好物推荐
+                        </text>
+                        <!-- 下边的盒子 -->
+                        <div class="bottom">
+
+                            <!-- 头像 -->
+                            <img src="../../assets/5.jpg" alt="" class="li-img">
+                            <text class="text-2" >选妹</text>
+                            <!--图标 浏览量 -->
+                            <svg t="1669440640506" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="2423" width="15" height="15">
+                                <path
+                                    d="M515.2 224c-307.2 0-492.8 313.6-492.8 313.6s214.4 304 492.8 304 492.8-304 492.8-304S822.4 224 515.2 224zM832 652.8c-102.4 86.4-211.2 140.8-320 140.8s-217.6-51.2-320-140.8c-35.2-32-70.4-64-99.2-99.2-6.4-6.4-9.6-12.8-16-19.2 3.2-6.4 9.6-12.8 12.8-19.2 25.6-35.2 57.6-70.4 92.8-102.4 99.2-89.6 208-144 329.6-144s230.4 54.4 329.6 144c35.2 32 64 67.2 92.8 102.4 3.2 6.4 9.6 12.8 12.8 19.2-3.2 6.4-9.6 12.8-16 19.2C902.4 585.6 870.4 620.8 832 652.8z"
+                                    p-id="2424"></path>
+                                <path
+                                    d="M512 345.6c-96 0-169.6 76.8-169.6 169.6 0 96 76.8 169.6 169.6 169.6 96 0 169.6-76.8 169.6-169.6C681.6 422.4 604.8 345.6 512 345.6zM512 640c-67.2 0-121.6-54.4-121.6-121.6 0-67.2 54.4-121.6 121.6-121.6 67.2 0 121.6 54.4 121.6 121.6C633.6 582.4 579.2 640 512 640z"
+                                    p-id="2425"></path>
+                            </svg>
+                            <text class="li-text2">56k</text>
+                        </div>
+                    </li>
+                </ul>
+
             </div>
+
         </div>
+
     </div>
 </template>
-<script src="macy.js">
-</script>
-<script>
-    var masonry = new Macy({
-    container: '#macy-container', // 图像列表容器id
-    trueOrder: false,
-    waitForImages: false,
-    useOwnImageLoader: false,
-    debug: true,
- 
-    //设计间距
-    margin: {
-      x: 10,
-      y: 10
-    },
- 
-    //设置列数
-    columns: 6,
- 
-    //定义不同分辨率（1200，940，520，400这些是分辨率）
-    breakAt: {
-     1200: {
-      columns: 5,
-      margin: {
-        x: 23,
-        y: 4
-      }
-     },
-     940: {
-      margin: {
-        y: 23
-      }
-     },
-     520: {
-      columns: 3,
-      margin: 3,
-     },
-     400: {
-      columns: 2
-     }
-    }
-   });
-</script>
-<!-- <script setup lang="ts">
 
-</script> -->
-
+<script setup lang="ts">
+</script>
 
 <style scoped>
+.box {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .gg {
     width: 100%;
     height: 50px;
@@ -122,12 +136,17 @@
 
 .svg-1 {
     line-height: 50px;
+    
 }
-
+.icon{
+    line-height: 50px;
+    padding: 11px 0px 10px 50px;
+    
+}
 .svg-2 {
     margin: auto;
     line-height: 50px;
-    display: flex;
+    display: flex; 
 }
 
 .gg img {
@@ -138,7 +157,7 @@
 .box1 {
     height: 40px;
     width: 100%;
-    background: pink;
+    /* background: pink; */
     display: flex;
     line-height: 40px;
 }
@@ -153,21 +172,20 @@
     font-size: 20px;
 }
 
-.icon-3 {
-    padding: 0px 0px 0px 20px;
-}
+
 
 /* 值得买第二个盒子 */
 .box2 {
     /* margin: 10px 0; */
     width: 100%;
     height: 380px;
-    background: rgb(242, 117, 138);
+    background: linear-gradient(to right, #a3f4e2, #fdcee2);
+    /* background:  pink; */
 }
 
 .el-carousel__item h3 {
     display: flex;
-    color: #475669;
+    color: #bec1c5;
     opacity: 0.75;
     line-height: 300px;
     margin: 0;
@@ -196,4 +214,121 @@
     font-size: 25px;
     margin: 0 10px;
 }
+
+.img-wrapper {
+    column-count: 4;
+    column-gap: 10px;
+
+    counter-reset: count;
+    width: 960px;
+    margin: 0 auto;
+}
+
+/* 瀑布流 */
+.box4 {
+    width: 100%;
+    box-sizing: border-box;
+    /* display: flex; */
+    /* flex-direction: column; */
+    background: #ebf0f8;
+}
+/* ul */
+.img-wrapper {
+    column-count: 2;
+    /* column-gap: 10px; */
+    counter-reset: count;
+    width: 100%;
+    padding: 0px 5px;
+    display: flex;
+    box-sizing: border-box;
+    
+}
+
+.img-wrapper>div {
+    position: relative;
+    margin-bottom: 0;
+    /* border-radius: 10%; */
+
+}
+
+/* 大图 */
+.img-wrapper>li>img {
+
+    width: 100%;
+    height: auto;
+    border-top-left-radius:5% ;
+    border-top-right-radius:5% ;
+    /* vertical-align: middle; */
+}
+/* 伪元素 */
+.img-wrapper>li::after {
+    counter-increment: count;
+    content: counter(count);
+    width: 2em;
+    height: 2em;
+    background-color: rgba(251, 251, 251, 0.9);
+    color: #ffffff;
+    line-height: 2em;
+    text-align: center;
+    position: absolute;
+    font-size: .5em;
+    z-index: 2;
+    left: 0;
+    top: 0;
+}
+
+.img-wrapper>li {
+    border-radius: 5%;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: rgb(255, 255, 255);
+    margin-top:10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+/* 头像 */
+.bottom .li-img {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    /* line-height: 60px; */
+    float: left;
+    padding: 10px;
+}
+/* 头像和图标的盒子 */
+.bottom {
+    width: 100%;
+    height: 40px;
+    border-top:1px solid rgb(181, 177, 177) ;
+    /* flex-direction: column; */  
+  
+}
+.icon-3 {
+    padding: 0px 0px 0px 20px;
+}
+.bottom text{
+font-size: 5px;
+text-align: center;
+line-height: 40px;
+}
+.li-text1{
+    display: block;
+    height: 25px;
+   float: left;
+   line-height: 25px;
+   margin-right: 108px;
+}
+/* 选妹 */
+.text-2{
+    float: left;
+}
+.li-text2{
+    float: right;
+    padding-right:20px ;
+  
+}
+/* 眼睛图标 */
+
 </style>

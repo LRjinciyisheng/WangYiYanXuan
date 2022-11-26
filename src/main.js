@@ -7,9 +7,11 @@ import "./index.css";
 import App from "./App.vue";
 import "reset-css";
 import router from './router';
-
+// 引入仓库
+import pinia from '../src/store'
  
 createApp(App)
 .use(router)
-.use(ElementPlus, { size: 'small', zIndex: 3000, locale: zhCn, })
+.use(pinia)
+.use(ElementPlus, { size:'small', zIndex: 3000, locale: zhCn, })
   .mount("#app");
