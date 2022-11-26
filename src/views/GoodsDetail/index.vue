@@ -252,19 +252,35 @@
       <button class="right">加入购物车</button>
     </div>
     <!-- 回到顶部按钮 -->
-    <div class="backtop" @click="back">
+    <div class="backtop" style="display:none" @click="back">
       <i class="iconfont icon-shangfan"></i>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import { onMounted } from "vue";
+
+onMounted(() => {
+  // 按钮显示与隐藏回调
+  showOrHidden();
+});
+// 按钮显示与隐藏回调
+const showOrHidden = () => {
+  window.onscroll = () => {
+    if (document.documentElement.scrollTop + document.body.scrollTop > 300) {
+      document.querySelector(".backtop").style.display = "block";
+    } else {
+      document.querySelector(".backtop").style.display = "none";
+    }
+  };
+};
 // 回到顶部回调
 const back = () => {
   let time = 500;
   let itemTime = 20;
   let offset = document.documentElement.scrollTop + document.body.scrollTop;
   let itemOffset = offset / (time / itemTime);
-  let timer = setInterval(()=> {
+  let timer = setInterval(() => {
     offset -= itemOffset;
     if (offset <= 0) {
       clearInterval(timer);
@@ -290,6 +306,7 @@ const back = () => {
       height: 25px;
       padding-left: 8px;
       line-height: 25px;
+      box-sizing: border-box;
       .left,
       .center,
       .right {
@@ -583,8 +600,8 @@ const back = () => {
       }
     }
   }
-  .detail-img{
-    .img{
+  .detail-img {
+    img {
       width: 100%;
     }
   }
@@ -630,7 +647,7 @@ const back = () => {
     background: #eee;
     position: fixed;
     bottom: 100px;
-    right: 250px;
+    right: 50px;
   }
 }
 </style>
