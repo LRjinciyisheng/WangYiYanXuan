@@ -59,9 +59,7 @@
       <!-- 商品详情列表 -->
       <ProductsList v-else :searchVal="searchVal"></ProductsList>
     </div>
-    <div class="footer">
-
-    </div>
+  
   </div>
 </template>
 
@@ -148,12 +146,5 @@ let handleSearch = (keyword) => {
 <style lang="less" scoped>
 @import url("./index.less");
 
-.footer{
-  width: 100%;
-  height: 50px;
-  background: red;
- 
-  position: sticky;
-  bottom: 0;
-}
+
 </style>
