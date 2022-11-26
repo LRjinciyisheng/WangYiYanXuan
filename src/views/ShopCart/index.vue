@@ -1,15 +1,10 @@
 <template>
   <div class="box">
-    <h4>全部商品</h4>
     <div class="container" style="margin: 10px">
       <!-- 顶部的标题 -->
       <div class="top">
         <div class="left">
-          <el-image
-            style="width: 19px; height: 19px"
-            :src="url"
-            
-          ></el-image>
+          <el-image style="width: 19px; height: 19px" :src="url"></el-image>
           <h3>单件包邮</h3>
         </div>
         <p class="text">以下商品已免邮费</p>
@@ -17,7 +12,11 @@
       <!-- 中间部分商品 -->
       <div class="center">
         <div class="left">
-          <img style="width:19px;height:19px" src="https://yanxuan.nosdn.127.net/15997181361146549.png" alt="">
+          <img
+            style="width: 19px; height: 19px"
+            src="https://yanxuan.nosdn.127.net/15997181361146549.png"
+            alt=""
+          />
           <img
             src="https://yanxuan-item.nosdn.127.net/e8a1986d01e423ed509f8324f3cdb1e0.png?imageView&quality=35&thumbnail=146x146"
             alt=""
@@ -52,8 +51,6 @@
       <span class="heji">合计:￥117</span>
       <button>结算</button>
     </div>
-
-   
   </div>
 </template>
 
@@ -62,8 +59,7 @@ const url = "https://yanxuan.nosdn.127.net/15997181361146549.png";
 </script>
 
 <style lang="less">
-
- * {
+* {
   margin: 0;
   padding: 0;
 }
@@ -74,16 +70,10 @@ html {
 .box {
   width: 100%;
   height: 100%;
- h4{
-    width: 100px;
-    background: #cbd2d4;
-    border-radius: 3px;
-    margin: 5px auto;
-    padding: 3px;
 
- }
 }
 .container {
+  position: relative;
   width: 90%;
   height: 100%;
   padding: 10px;
@@ -97,7 +87,6 @@ html {
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  
 }
 .top .left {
   display: flex;
@@ -195,7 +184,9 @@ html {
   width: 100%;
   height: 100px;
   background: #f4f4f4;
-  margin-top: 300px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 .footer img {
   width: 19px;
