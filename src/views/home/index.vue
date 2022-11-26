@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!-- 顶部搜索框 -->
+    <!-- 顶部搜索框1 -->
     <div class="top">
       <img src="./images/logo.png" class="logo" alt="" />
       <el-input
