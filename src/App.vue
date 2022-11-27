@@ -1,16 +1,16 @@
 <template>
   <div class="conatienr">
-    <!-- <router-view /> -->
-    <Category></Category>
+    <router-view />
+    <!-- <Category></Category> -->
   </div>
 </template>
 
 <script>
-import Category from './views/Category/index.vue';
+import Category from "./views/Category/index.vue";
 
 export default {
   name: "App",
-  components:{Category}
+  components: { Category },
 };
 </script>
 <style lang="less">

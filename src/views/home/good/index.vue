@@ -1,7 +1,7 @@
 <template>
   <div class="good">
     <!-- 轮播 -->
-    <el-carousel class="swiper">
+    <el-carousel class="swiper" height="150px">
       <el-carousel-item v-for="item in 4" :key="item" class="item">
         <img src="../images/1.jpg" class="banner" alt="" />
       </el-carousel-item>
