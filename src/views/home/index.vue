@@ -24,9 +24,15 @@
     <div class="scroll">
       <div v-show="activeName == '推荐'" class="scroll-tj">
         <!-- 轮播 -->
-        <el-carousel class="swiper" height="150px">
-          <el-carousel-item v-for="banner in 4" :key="banner" class="item">
-            <img src="./images/1.jpg" class="banner" alt="" />
+        <el-carousel class="swiper" height="150px" trigger loop>
+          <el-carousel-item
+            v-for="banner in homeStore.banner"
+            :key="banner.id"
+            class="item"
+          >
+            <a :href="banner.targetUrl">
+              <img :src="banner.picUrl" class="banner" alt="" />
+            </a>
           </el-carousel-item>
         </el-carousel>
         <!-- 三个图标 -->

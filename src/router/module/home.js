@@ -1,4 +1,4 @@
-//搜索路由
+//首页路由
 const HomeRoutes = [
   {
     path: "/",
