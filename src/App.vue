@@ -11,7 +11,7 @@ import Category from './views/Category/index.vue';
 //import Home from './views/home/index.vue'
 export default {
   name: "App",
-  components:{Category,Home}
+  components:{Category}
 };
 </script>
 <style lang="less">

@@ -28,7 +28,7 @@ const props = defineProps({
 
 
 onMounted(() => {
-  getReqSearchAutoComplete();
+  //getReqSearchAutoComplete();
 });
 watch(
   ()=>props.searchVal, 
