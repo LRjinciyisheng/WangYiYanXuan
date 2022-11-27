@@ -2,8 +2,8 @@
 import { defineStore } from 'pinia';
 //封装函数:获取token | 持久化存储token | 删除token
 
-// 引入登录的函数
-import {reqLogin} from '../api/user'
+// 引入登录的函数 轮播 瀑布流
+import {reqLogin,reqnavWap,reqtopic} from '../api/user'
 
 // 定义小仓库
 export const useUserInfoStore =defineStore('userInfo',{
@@ -26,6 +26,37 @@ export const useUserInfoStore =defineStore('userInfo',{
             }
       
           },
+          //获取轮播图的数据
+          async getimg(){
+            try{
+              let result =await reqnavWap();
+              console.log(result)
+              this.navList=result.navList
+              
+            } catch(error){
+              return Promise.reject(new Error(error.message));
+            }
+        
+          },
+          // 获取瀑布流的数据
+          async getimage(){
+            try{
+              let result = await reqtopic()
+              console.log(result)
+              this.fallsList=result.result
+            }catch(error){
+              return Promise.reject(new Error(error.message));
+            }
+          }
+    },
+    state:()=>{
+      return{
+        //轮播图的数据
+        navList:[],
+        //瀑布流的数据
+        fallsList:[]
+      }
+
     }
 
 

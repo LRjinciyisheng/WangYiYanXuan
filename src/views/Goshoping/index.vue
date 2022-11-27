@@ -3,6 +3,7 @@
     <div class="box">
         <!-- 头部的广告 -->
         <div class="gg"><img src="../../assets/6.png" alt=""></div>
+       
         <!-- 第二行的盒子 -->
         <div class="box1">
             <!-- 首页的图标 -->
@@ -48,18 +49,20 @@
                 <text class="bigtext">值得买</text>
                 <text>严选好物 用心生活</text>
             </div>
+            
             <!-- 轮播图 -->
             <el-carousel indicator-position="outside" trigger="hover">
-                <el-carousel-item v-for="item in 6" :key="item">
-                    <img src="../Login/images/2.jpg" alt="" class="el-img">
+                <el-carousel-item  v-for="(item,index) in navList" >
+                    <img src="item.columnUrl" class="el-img" link="item.columnUrl">
                 </el-carousel-item>
             </el-carousel>
+            
         </div>
         <!-- 瀑布流的盒子 -->
-        <div class="box3">
+        <div class="box3" v-for="(item,index) in fallsList" :key="item.index">
             <!-- <div class="text-3">足够用心才足够特别-</div> -->
-            <div class="box4">
-                <ul class="img-wrapper" v-for="item in 12" :key="item">
+            <div class="box4" >
+                <ul class="img-wrapper" >
                     <!-- 左侧 -->
                     <li>
                         <!-- 大图 -->
@@ -116,11 +119,32 @@
             </div>
 
         </div>
+        <!-- console.log(navList); -->
 
     </div>
 </template>
 
 <script setup lang="ts">
+//引入仓库
+// 引入仓库
+//引入钩子
+import{onMounted} from 'vue'
+import { useUserInfoStore} from '../../store/userinfo'
+const userInfoStore = useUserInfoStore()
+//轮播图的数据
+const navList=userInfoStore
+//瀑布流的数据
+const fallsList=userInfoStore
+
+//组件挂载后执行
+onMounted(()=>{
+    //让仓库发请求获取轮播图的数据 
+    userInfoStore.getimg()
+     //让仓库发请求获取瀑布流的数据 
+    userInfoStore.getimage()
+})     
+
+
 </script>
 
 <style scoped>
@@ -270,7 +294,7 @@
     color: #ffffff;
     line-height: 2em;
     text-align: center;
-    position: absolute;
+    /* position: absolute; */
     font-size: .5em;
     z-index: 2;
     left: 0;
