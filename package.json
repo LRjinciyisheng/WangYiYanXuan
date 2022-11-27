@@ -10,6 +10,8 @@
     "@vitejs/plugin-vue": "^2.3.3",
     "axios": "^1.2.0",
     "element-plus": "^2.2.5",
+    "lodash": "^4.17.21",
+    "mitt": "^3.0.0",
     "macy": "^2.5.1",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.26",

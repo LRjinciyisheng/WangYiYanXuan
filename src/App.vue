@@ -1,14 +1,22 @@
 <template>
- <div class="conatienr">
-   <router-view />
- </div>
+  <div class="conatienr">
+    <router-view />
+    <!--  <Category></Category> -->
+      <!-- <Home></Home> -->
+  </div>
 </template>
 
 <script>
+import Category from './views/Category/index.vue';
+//import Home from './views/home/index.vue'
 export default {
-  name: 'App',
-}
+  name: "App",
+  components:{Category}
+};
 </script>
 <style lang="less">
-
+.container {
+  width: 100%;
+  height: 100%;
+}
 </style>

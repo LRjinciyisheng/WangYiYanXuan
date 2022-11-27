@@ -1,4 +1,4 @@
-import axios, { type AxiosResponse } from 'axios';
+import axios from 'axios';
 import { ElMessage, ElMessageBox } from 'element-plus';
 
 
@@ -12,9 +12,8 @@ const service = axios.create({
 
 // 添加请求拦截器
 service.interceptors.request.use(
-	(config: any) => {
+	(config) => {
 		//请求携带token[pinia小仓库里面]
-	
 		return config;
 	}
 );
@@ -25,9 +24,9 @@ service.interceptors.response.use(
 	async (response) => {
 		// 对响应数据做点什么
 		const res = response.data;
-		console.log(res);
-		if (res.code !== '200') { /* 成功数据的code值为20000/200 */
-			// 统一的错误提示
+		// if (!res || res.code !== 200) { /* 成功数据的code值为20000/200 */
+		if (!res) { /* 成功数据的code值为20000/200 */
+			//统一的错误提示
 			ElMessage({
 				message: (typeof res.data == 'string' && res.data) || res.message || 'Error',
 				type: 'error',
@@ -54,4 +53,18 @@ service.interceptors.response.use(
 	}
 );
 
-export default service;
+
+const URLS = {
+	//网易严选
+	you163: '/wy-api',
+	// 前台atguigu
+	atguigu:'/api'
+};
+
+export default function(config) {
+	const uri = URLS[config['type']];
+	if (!uri) throw '未获取到该type对应的baseURL';
+	config.baseURL = uri;
+	return service(config);
+}
+

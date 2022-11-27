@@ -1,0 +1,45 @@
+.search-container{
+  height: 100vh;
+  background-color: rgb(231, 226, 255);
+
+ 
+/* 搜索框和取消按钮 */
+  .search-input {
+    background: rgb(248, 251, 253);
+    display: flex;
+    white-space: nowrap; //文字不换行
+    padding: 15px;
+ span{
+  line-height: 30px;
+  margin-left: 18px;
+ }
+  }
+  .search-history{
+    border-top: 2px solid rgb(195, 202, 204);
+   
+  }
+  /* 历史记录&热门搜索 */
+  .search-history,.search-hot {
+    background: rgb(248, 251, 253);
+    padding: 15px;
+    margin-bottom: 10px;
+
+    &-text {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px; //间距
+      &-item {
+        border: 1px solid black;
+        padding: 6px;
+        border-radius: 10%;
+      }
+      
+    }
+  }
+}
+
