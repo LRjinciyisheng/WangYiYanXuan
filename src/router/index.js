@@ -6,7 +6,10 @@ import Pay from './module/pay.js'//支付页路由导入
 import GoodsDetail from './module/goodsDetail.js'//商品详情路由导入
 import Home from "./module/home.js"; //首页路由导入
 import Category from './module/category.js'//搜索页路由导入
-
+import User from './module/user.js'//个人中心路由导入
+import Login from './module/login.js'
+import Goshoping from './module/goshoping.js'
+import Center from './module/center'
 const routes = [
 
   ...Search,//搜索页展示
@@ -15,7 +18,12 @@ const routes = [
   ...Pay,
   ...GoodsDetail,
   ...Home, //首页展示
-];
+  ...User, //个人中心
+  ...Login, //登录
+  ...Goshoping  ,//值得买
+  ...Center //个人中心跳转后的路由
+]
+
 
 //创建路由器
 const router = createRouter({
