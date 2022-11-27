@@ -2,13 +2,13 @@
   <div class="box">
     <div class="top">
       <div class="left">
-        <p class="name">小强哦</p>
+        <p class="name">{{userAddressList.userName}}</p>
         <span>默认</span>
       </div>
       <div class="right">
         <div>
-          <p class="phone">186****1765</p>
-          <p class="address">北京昌平宏福苑同学公寓110</p>
+          <p class="phone">{{userAddressList.phone}}</p>
+          <p class="address">{{userAddressList.address}}</p>
         </div>
         <i class="iconfont icon-arrow-right"></i>
       </div>
@@ -23,32 +23,33 @@
       </li>
     </ul>
     <ul class="bottom">
-      <li class="item" v-for="item in 4">
+      <li class="item" v-for="(item,index) in 3" :key="index">
         <span class="sum">商品合计</span>
         <span class="price">￥129.00</span>
       </li>
     </ul>
     <div class="package">
-      <i>包裹1</i>
+      <i>包裹</i>
       <span>支付后,预计48小时内发货</span>
     </div>
-    <div class="detail">
+    <div class="detail" v-for="(item,index) in payInfo.detailArrayList" :key="index">
       <img
-        src="https://yanxuan-item.nosdn.127.net/e8a1986d01e423ed509f8324f3cdb1e0.png?imageView&quality=35&thumbnail=146x146"
+        :src="item.imgUrl?item.imgUrl:'http://47.93.148.192:8080/group1/M00/02/DC/rBHu8mGyQOKATYA2AABTVO9hAHc987.jpg'"
         alt=""
       />
       <div class="box">
         <div class="inner">
-          <p class="text"><i>特价</i> 高级摩登法式&nbsp;真丝衣服衣服</p>
-          <span>x1</span>
+          <p class="text"><i>特价</i> {{item.skuName?item.skuName:' 华为智慧屏 SE 55英寸 超薄电视 超高清智能液晶电视机 HD55DESA 2+16GB '}}</p>
+          <span>X{{item.skuNum?item.skuNum:'4'}}</span>
         </div>
 
-        <span class="size">灰色:L</span>
+        <span class="size">银灰色:5.8英寸</span>
         <div class="bottom">
-          <p class="price">￥117<span>￥129.00</span></p>
+          <p class="price">{{item.orderPrice?item.orderPrice:'￥8888.00'}}<span>￥11290.00</span></p>
         </div>
         <p class="tip">部分服务不可用<i class="iconfont icon-tanhao"></i></p>
       </div>
+      <!-- {{payInfo.detailArrayList[0].imgUrl}} -->
     </div>
     <div class="clause">
       <span class="iconfont icon-fuxuankuang"></span>
@@ -58,7 +59,51 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup>
+import { reqTradeInfo } from "@/api/pay/index";
+import { onMounted, reactive, ref } from "vue";
+
+let payInfo = ref({
+  userAddressList:[
+    {
+      userName:'修黄',
+      phone:'137****4586',
+      address:'北京市昌平区温度水池旁小火洼巷110室'
+    }
+  ],
+  // constList:[
+  //   {
+  //     name:'商品合计',
+  //     pric:'￥10587.00'
+  //   },
+  //   {
+  //     name:'邮费',
+  //     pric:'￥0.00'
+  //   },
+  //   {
+  //     name:'活动优惠',
+  //     pric:'￥11993'
+  //   },
+  // ]
+
+});
+let userAddressList = payInfo.value.userAddressList[0];
+//  页面加载触发onMounted
+onMounted(() => {
+  getPayInfo();
+});
+
+const getPayInfo = async () => {
+  try {
+    let result = await reqTradeInfo();
+    
+    payInfo.value = result;
+    console.log(payInfo.value );
+  } catch (error) {
+    return Promise.reject(new Error(error.message));
+  }
+};
+</script>
 
 <style lang="less">
 * {
@@ -179,6 +224,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
   img {
     width: 80px;
     height: 80px;
@@ -190,6 +236,7 @@
     flex-flow: column;
     justify-content: center;
     align-items: start;
+    font-size: 12px;
     .inner {
       display: flex;
       .text {
@@ -223,18 +270,18 @@
     }
   }
 }
-.clause{
+.clause {
   float: left;
   margin-left: 15px;
   font-size: 12px;
   color: #888;
   margin-top: 10px;
-  i{
+  i {
     margin-left: 5px;
   }
-  a{
+  a {
     text-decoration: none;
-     color: #333;
+    color: #333;
   }
 }
 </style>

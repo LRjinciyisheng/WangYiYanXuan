@@ -45,7 +45,7 @@ export default defineConfig((mode) => {
         '/api': {
           target: 'http://sph-h5-api.atguigu.cn/',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),//路径重写
+          // rewrite: (path) => path.replace(/^\/api/, ''),//路径重写
         },
         '/wy-api': {
           target: 'https://m.you.163.com/',//实际请求接口url
