@@ -9,15 +9,5 @@ const SearchRoutes = [
       //hidden: true,
     },
   },
-
-  //分类
-  {
-    path: "/category",
-    name: "Category",
-    component: () => import("@/views/Category/index.vue"),
-    meta: {
-      //hidden: true,
-    },
-  },
 ];
 export default SearchRoutes;
