@@ -28,7 +28,7 @@ const props = defineProps({
 
 
 onMounted(() => {
-  getReqSearchAutoComplete();
+  //getReqSearchAutoComplete();
 });
 watch(
   ()=>props.searchVal, 
@@ -42,7 +42,7 @@ const getReqSearchAutoComplete = async () => {
     });
     keywordListRef.value = res1;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 

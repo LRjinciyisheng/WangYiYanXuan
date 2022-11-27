@@ -14,7 +14,6 @@ const service = axios.create({
 service.interceptors.request.use(
 	(config) => {
 		//请求携带token[pinia小仓库里面]
-	
 		return config;
 	}
 );
@@ -54,4 +53,18 @@ service.interceptors.response.use(
 	}
 );
 
-export default service;
+
+const URLS = {
+	//网易严选
+	you163: '/wy-api',
+	// 前台atguigu
+	atguigu:'/api'
+};
+
+export default function(config) {
+	const uri = URLS[config['type']];
+	if (!uri) throw '未获取到该type对应的baseURL';
+	config.baseURL = uri;
+	return service(config);
+}
+
