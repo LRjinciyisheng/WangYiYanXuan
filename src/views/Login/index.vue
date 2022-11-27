@@ -34,11 +34,16 @@ const loginForm = ref({
 // 点击登录的回调
 //点击登录按钮
 const handleLogin = async () => {
-
   const { username, password } = loginForm.value;
   try {
+    
     //userInfoStore仓库调用login方法，携带账号与密码发请求---->登录请求
-  return result=await userInfoStore.login(username, password);
+  let result=await userInfoStore.login(username, password);
+  console.log(userInfoStore.login);
+  return result
+  router.push(
+    
+  )
 
   } finally {
 

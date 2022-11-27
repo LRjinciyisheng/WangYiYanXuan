@@ -3,7 +3,7 @@
     <div class="box">
         <!-- 头部的广告 -->
         <div class="gg"><img src="../../assets/6.png" alt=""></div>
-       
+
         <!-- 第二行的盒子 -->
         <div class="box1">
             <!-- 首页的图标 -->
@@ -49,33 +49,48 @@
                 <text class="bigtext">值得买</text>
                 <text>严选好物 用心生活</text>
             </div>
-            
+
             <!-- 轮播图 -->
-            <el-carousel indicator-position="outside" trigger="hover">
-                <el-carousel-item  v-for="(item,index) in navList" >
-                    <img src="item.columnUrl" class="el-img" link="item.columnUrl">
+            <el-carousel indicator-position="outside" trigger="hover" autoplay="false" >
+                <!-- 里面的每一页 -->
+                <el-carousel-item v-for="(item, index) in navList.navList" :key="index">
+                    <!-- 轮播图的大盒子 -->
+                    <!-- <div> {{navList.navList}}</div> -->
+                    <div class="box6">
+                        <!-- 轮播图+文字的小盒子 -->
+                        <div class="box5" >
+                            <img :src="item.picUrl" class="el-img" link="item.columnUrl">
+                            <div class="item-text2">{{ item.mainTitle }}</div>
+                            <div class="item-text1">{{ item.viceTitle }}</div>
+                        </div>
+                    </div>
                 </el-carousel-item>
+
             </el-carousel>
-            
+
         </div>
         <!-- 瀑布流的盒子 -->
-        <div class="box3" v-for="(item,index) in fallsList" :key="item.index">
+        <div class="box3" v-for="(item, index) in fallsList.fallsList" :key="item.index">       
+                    <div>{{fallsList.fallsList[1].topics[1]}}</div>
             <!-- <div class="text-3">足够用心才足够特别-</div> -->
             <div class="box4" >
-                <ul class="img-wrapper" >
+              <div>{{2%item.topics.indexOf("item")}}</div>
+                <ul class="img-wrapper" v-for="(item1,index) in item" >
+                    <!-- <div>{{item1}}</div> -->
                     <!-- 左侧 -->
-                    <li>
+                    <li class="li" v-for="(item2,index) in item">
+
                         <!-- 大图 -->
-                        <img src="../Login/images/2.jpg" alt="">
+                        <img :src="item2.picUrl" alt="">
                         <!-- 文字 -->
-                        <text class="li-text1">必买大赏</text>
+                        <text class="li-text1">{{item2.title}}</text>
 
-                        <!-- 下边的盒子 -->
+                        <!-- 下边的盒子 -->a
                         <div class="bottom">
 
                             <!-- 头像 -->
-                            <img src="../../assets/5.jpg" alt="" class="li-img">
-                            <text class="text-2">选妹</text>
+                            <img :src="item1.avatar" alt="" class="li-img">
+                            <text class="text-2">{{item2.nickname}}</text>
                             <!--图标 浏览量 -->
                             <svg t="1669440640506" class="icon" viewBox="0 0 1024 1024" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg" p-id="2423" width="15" height="15">
@@ -86,32 +101,7 @@
                                     d="M512 345.6c-96 0-169.6 76.8-169.6 169.6 0 96 76.8 169.6 169.6 169.6 96 0 169.6-76.8 169.6-169.6C681.6 422.4 604.8 345.6 512 345.6zM512 640c-67.2 0-121.6-54.4-121.6-121.6 0-67.2 54.4-121.6 121.6-121.6 67.2 0 121.6 54.4 121.6 121.6C633.6 582.4 579.2 640 512 640z"
                                     p-id="2425"></path>
                             </svg>
-                            <text class="li-text2">56k</text>
-                        </div>
-                    </li>
-
-                    <!-- 右侧 -->
-                    <li><img src="../../assets/5.jpg" alt="" class="li-img">
-                        <text class="li-text1">
-                            好物推荐
-                        </text>
-                        <!-- 下边的盒子 -->
-                        <div class="bottom">
-
-                            <!-- 头像 -->
-                            <img src="../../assets/5.jpg" alt="" class="li-img">
-                            <text class="text-2" >选妹</text>
-                            <!--图标 浏览量 -->
-                            <svg t="1669440640506" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                xmlns="http://www.w3.org/2000/svg" p-id="2423" width="15" height="15">
-                                <path
-                                    d="M515.2 224c-307.2 0-492.8 313.6-492.8 313.6s214.4 304 492.8 304 492.8-304 492.8-304S822.4 224 515.2 224zM832 652.8c-102.4 86.4-211.2 140.8-320 140.8s-217.6-51.2-320-140.8c-35.2-32-70.4-64-99.2-99.2-6.4-6.4-9.6-12.8-16-19.2 3.2-6.4 9.6-12.8 12.8-19.2 25.6-35.2 57.6-70.4 92.8-102.4 99.2-89.6 208-144 329.6-144s230.4 54.4 329.6 144c35.2 32 64 67.2 92.8 102.4 3.2 6.4 9.6 12.8 12.8 19.2-3.2 6.4-9.6 12.8-16 19.2C902.4 585.6 870.4 620.8 832 652.8z"
-                                    p-id="2424"></path>
-                                <path
-                                    d="M512 345.6c-96 0-169.6 76.8-169.6 169.6 0 96 76.8 169.6 169.6 169.6 96 0 169.6-76.8 169.6-169.6C681.6 422.4 604.8 345.6 512 345.6zM512 640c-67.2 0-121.6-54.4-121.6-121.6 0-67.2 54.4-121.6 121.6-121.6 67.2 0 121.6 54.4 121.6 121.6C633.6 582.4 579.2 640 512 640z"
-                                    p-id="2425"></path>
-                            </svg>
-                            <text class="li-text2">56k</text>
+                            <text class="li-text2">{{item2.readCount}}</text>
                         </div>
                     </li>
                 </ul>
@@ -128,21 +118,22 @@
 //引入仓库
 // 引入仓库
 //引入钩子
-import{onMounted} from 'vue'
-import { useUserInfoStore} from '../../store/userinfo'
+import { onMounted,ref } from 'vue'
+import { useUserInfoStore } from '../../store/userinfo'
 const userInfoStore = useUserInfoStore()
 //轮播图的数据
-const navList=userInfoStore
+const navList = userInfoStore
+console.log(navList);
 //瀑布流的数据
-const fallsList=userInfoStore
-
+const fallsList = userInfoStore
+console.log(fallsList)
 //组件挂载后执行
-onMounted(()=>{
+onMounted(() => {
     //让仓库发请求获取轮播图的数据 
     userInfoStore.getimg()
-     //让仓库发请求获取瀑布流的数据 
+    //让仓库发请求获取瀑布流的数据 
     userInfoStore.getimage()
-})     
+})
 
 
 </script>
@@ -160,17 +151,20 @@ onMounted(()=>{
 
 .svg-1 {
     line-height: 50px;
+
+}
+
+.icon {
+    /* line-height:20px; */
+    /* padding: 11px 0px 10px 50px; */
+    padding:11px 0px 0px 10px;
     
 }
-.icon{
-    line-height: 50px;
-    padding: 11px 0px 10px 50px;
-    
-}
+
 .svg-2 {
     margin: auto;
     line-height: 50px;
-    display: flex; 
+    display: flex;
 }
 
 .gg img {
@@ -223,9 +217,48 @@ onMounted(()=>{
     background-color: #d3dce6;
 }
 
+/* 每一张小图片 */
 .el-img {
+    /* height: 50%; */
     height: 100%;
     width: 100%;
+    /* border-radius: 50%; */
+    margin-bottom: 10px;
+    /* margin: 10px 8px; */
+    /* display: flex; */
+    /* flex-direction: row; */
+    
+
+}
+
+/* 轮播的小盒子 */
+.box5 {
+    height: 80%;
+    width: 80%;
+    /* padding:0px 10px; */
+    box-sizing: border-box;
+    padding: auto;
+}
+
+/* 轮播图下面的文字 */
+.item-text1 {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 5px;
+}
+/* 轮播图的大盒子 */
+.box6{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap:wrap ;
+    padding-top:25px;
+    box-sizing: border-box;
+}
+.item-text2 {
+    font-size: 15px;
+    font-weight: 800;
+    text-align: center;
 }
 
 .el-text {
@@ -239,23 +272,25 @@ onMounted(()=>{
     margin: 0 10px;
 }
 
-.img-wrapper {
-    column-count: 4;
-    column-gap: 10px;
-
-    counter-reset: count;
+/* .img-wrapper {
+    column-count: 2;
+    column-gap: 5px;
+    /* float: right; */
+    /* counter-reset: count;
     width: 960px;
-    margin: 0 auto;
-}
+    margin: 0 auto; */
+/* } */ 
 
 /* 瀑布流 */
 .box4 {
     width: 100%;
     box-sizing: border-box;
-    /* display: flex; */
-    /* flex-direction: column; */
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     background: #ebf0f8;
 }
+
 /* ul */
 .img-wrapper {
     column-count: 2;
@@ -265,8 +300,9 @@ onMounted(()=>{
     padding: 0px 5px;
     display: flex;
     box-sizing: border-box;
-    
+
 }
+
 
 .img-wrapper>div {
     position: relative;
@@ -280,10 +316,11 @@ onMounted(()=>{
 
     width: 100%;
     height: auto;
-    border-top-left-radius:5% ;
-    border-top-right-radius:5% ;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
     /* vertical-align: middle; */
 }
+
 /* 伪元素 */
 .img-wrapper>li::after {
     counter-increment: count;
@@ -303,15 +340,17 @@ onMounted(()=>{
 
 .img-wrapper>li {
     border-radius: 5%;
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: block;
     background: rgb(255, 255, 255);
-    margin-top:10px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
-    
+    flex-wrap: wrap;
+    float:right;
 }
+
 /* 头像 */
 .bottom .li-img {
     border-radius: 50%;
@@ -321,38 +360,45 @@ onMounted(()=>{
     float: left;
     padding: 10px;
 }
+
 /* 头像和图标的盒子 */
 .bottom {
     width: 100%;
     height: 40px;
-    border-top:1px solid rgb(181, 177, 177) ;
-    /* flex-direction: column; */  
-  
+    border-top: 1px solid rgb(181, 177, 177);
+    /* flex-direction: column; */
+    text-align: center;
+
 }
+
 .icon-3 {
     padding: 0px 0px 0px 20px;
 }
-.bottom text{
-font-size: 5px;
-text-align: center;
-line-height: 40px;
+
+.bottom text {
+    font-size: 5px;
+    text-align: center;
+    line-height: 40px;
 }
-.li-text1{
+
+.li-text1 {
     display: block;
-    height: 25px;
-   float: left;
-   line-height: 25px;
-   margin-right: 108px;
+    /* height: 25px; */
+    float: left;
+    line-height: 25px;
+    /* margin-right: 108px; */
 }
+
 /* 选妹 */
-.text-2{
+.text-2 {
     float: left;
 }
-.li-text2{
-    float: right;
-    padding-right:20px ;
-  
-}
-/* 眼睛图标 */
 
+.li-text2 {
+    float: right;
+    padding-right: 20px;
+
+}
+
+/* 眼睛图标 */
 </style>

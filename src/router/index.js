@@ -7,9 +7,9 @@ import GoodsDetail from './module/goodsDetail.js'//商品详情路由导入
 import Home from "./module/home.js"; //首页路由导入
 import Category from './module/category.js'//搜索页路由导入
 import User from './module/user.js'//个人中心路由导入
-import Login from './module/login.js'
-import Goshoping from './module/goshoping.js'
-import Center from './module/center'
+import Login from './module/login.js'  //登录路由导入
+import Goshoping from './module/goshoping.js' //值得买的路由
+import Center from './module/center' //个人中心跳转后的路由
 const routes = [
 
   ...Search,//搜索页展示

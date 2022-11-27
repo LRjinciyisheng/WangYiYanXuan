@@ -1,4 +1,5 @@
 // defineStore定义小仓库的写法,书写形式有两种:选择式{} 组合式()=>{}
+import { result } from 'lodash';
 import { defineStore } from 'pinia';
 //封装函数:获取token | 持久化存储token | 删除token
 
@@ -7,6 +8,15 @@ import {reqLogin,reqnavWap,reqtopic} from '../api/user'
 
 // 定义小仓库
 export const useUserInfoStore =defineStore('userInfo',{
+
+
+  state:()=>({
+      //轮播图的数据
+      navList:[],
+      //瀑布流的数据
+      fallsList:[]
+  }),
+
     // actions异步请求|逻辑
     actions:{
         async login(username, password) {
@@ -15,14 +25,18 @@ export const useUserInfoStore =defineStore('userInfo',{
               //登录成功
               let result = await reqLogin({ username, password });
               //小仓库存储一份token 
-              this.token = result.token;
+              // this.token = result.token;
               //本地存储持久化存储
-              setToken(result.token);
+              // setToken(result.token);
               //登录成功返回成功Promise
+              alert(111)
               return 'ok';
             } catch (error) {
+              alert('请求失败')
+              
               //登录失败返回失败promise
               return Promise.reject(new Error(error.message));
+              
             }
       
           },
@@ -30,11 +44,13 @@ export const useUserInfoStore =defineStore('userInfo',{
           async getimg(){
             try{
               let result =await reqnavWap();
-              console.log(result)
-              this.navList=result.navList
+              console.log(result.navList)
+               this.navList=result.navList
               
             } catch(error){
+              console.log(error);
               return Promise.reject(new Error(error.message));
+            
             }
         
           },
@@ -49,19 +65,5 @@ export const useUserInfoStore =defineStore('userInfo',{
             }
           }
     },
-    state:()=>{
-      return{
-        //轮播图的数据
-        navList:[],
-        //瀑布流的数据
-        fallsList:[]
-      }
-
-    }
-
-
-
-
-    // pinia中state,存储仓库数据-->非持久化存储 state:函数返回的结果组件可以使用的数据
-
+  
 })
