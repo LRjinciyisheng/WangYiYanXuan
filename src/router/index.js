@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Search from "./module/search.js"; //搜索页路由导入
-import Home from "./module/home.js"; //首页路由导入
+import Home from "./module/home.ts"; //首页路由导入
+import Search from './module/search.js'//搜索页路由导入
+import Category from './module/category.js'//搜索页路由导入
 
 const routes = [
-  ...Search, //搜索页展示
   ...Home, //首页展示
-];
+  ...Search,//搜索页展示
+  ...Category,
+]
 
 //创建路由器
 const router = createRouter({
