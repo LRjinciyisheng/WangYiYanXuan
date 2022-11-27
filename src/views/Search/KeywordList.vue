@@ -42,7 +42,7 @@ const getReqSearchAutoComplete = async () => {
     });
     keywordListRef.value = res1;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 

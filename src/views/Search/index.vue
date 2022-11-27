@@ -101,7 +101,7 @@ const getReqSearchInit = async () => {
     searchHotList.value = res.hotKeywordVOList;
     // console.log(res, "ssssssssss");
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
 
