@@ -1,8 +1,8 @@
 <template>
   <div class="conatienr">
     <router-view />
-   <!--  <Category></Category> -->
-     <!-- <Home></Home> -->
+    <!--  <Category></Category> -->
+      <!-- <Home></Home> -->
   </div>
 </template>
 
