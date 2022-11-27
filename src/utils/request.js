@@ -58,7 +58,7 @@ const URLS = {
 	//网易严选
 	you163: '/wy-api',
 	// 前台atguigu
-	atguigu:'/gg-api'
+	atguigu:'/api'
 };
 
 export default function(config) {

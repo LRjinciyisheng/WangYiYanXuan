@@ -42,10 +42,10 @@ export default defineConfig((mode) => {
       host: '127.0.0.1',
       port: 8080,
       proxy: {
-        '/gg-api': {
-          target: 'http://sph-h5-api.atguigu.cn',
+        '/api': {
+          target: 'http://sph-h5-api.atguigu.cn/',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/gg-api/, ''),//路径重写
+          rewrite: (path) => path.replace(/^\/api/, ''),//路径重写
         },
         '/wy-api': {
           target: 'https://m.you.163.com/',//实际请求接口url
