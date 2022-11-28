@@ -1,5 +1,9 @@
-import axios from "axios";
-import { ElMessage, ElMessageBox } from "element-plus";
+import axios from 'axios';
+import { ElMessage, ElMessageBox } from 'element-plus';
+
+
+// 暂无token数据 先写死
+const token = "680fa93a9e404b17bdf01a378ab9f88b";
 
 // 配置新建一个 axios 实例
 const service = axios.create({
@@ -8,10 +12,13 @@ const service = axios.create({
 });
 
 // 添加请求拦截器
-service.interceptors.request.use((config) => {
-  //请求携带token[pinia小仓库里面]
-  return config;
-});
+service.interceptors.request.use(
+	(config) => {
+    config.headers.token = token;
+		//请求携带token[pinia小仓库里面]
+		return config;
+	}
+);
 
 // 添加响应拦截器
 service.interceptors.response.use(
