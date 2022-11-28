@@ -6,7 +6,7 @@ import { defineStore } from 'pinia';
 import {reqLogin} from '../api/user'
 
 // 定义小仓库
-export const useUserInfoStore =defineStore('userInfo',{
+export const useUserInfoStore = defineStore('userInfo',{
     // actions异步请求|逻辑
     actions:{
         async login(username, password) {

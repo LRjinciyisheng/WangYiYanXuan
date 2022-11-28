@@ -1,16 +1,41 @@
 <template>
-  <div>
+  <div >
     <!-- 上方-标题 -->
-    <ul class="headline" >
-      <li>综合</li>
+    <ul class="headline" @click="handlerActive" >
+      <li @click="()=>handlerPriceBox('1', true)" :class="{'active': isCurrentActive === '1'}">综合</li>
       <li>
-        <span>价格</span>
+        <span @click="()=>handlerPriceBox('2')" :class="{'active': isCurrentActive === '2'}" >价格</span>
         <span class="ImgArrows">
           <el-icon :size="10"><ArrowUp /></el-icon>
           <el-icon :size="10"><ArrowDown /></el-icon>
         </span>
       </li>
-      <li>分类</li>
+      <li @click="()=>handlerPriceBox('3')" :class="{'active': isCurrentActive === '3'}">分类</li>
+      <!-- 价格选框 -->
+      <div class="PriceBox" v-show="isShowPriceBox">
+        <div  v-show="isCurrentActive === '2'">
+            <!-- 筛选 -->
+            <div class="PriceBox-screen"> 筛选
+              <input class="PriceBox-screenIn" type="text" placeholder="最低价">
+              <span>—</span>
+              <input class="PriceBox-screenIn" type="text" placeholder="最低价">
+            </div>
+            <!-- 排序 -->
+            <div class="PriceBox-sort">
+              排序
+              <button class="PriceBox-sortL">从低到高</button>
+              <button class="PriceBox-sortR">从高到低</button>
+            </div>
+            <!-- 底部按钮 -->
+            <div >  
+              <button class="PriceBox-btn">取消</button>
+              <button class="PriceBox-btn">确定</button>
+            </div>
+        </div>
+        <div class="fenlei_btn" v-show="isCurrentActive === '3'"><button>分类</button></div>
+      </div>
+       <!-- 蒙版 -->
+       <div v-show="isShowPriceBox" class="mask" @click="()=>handlerPriceBox(isCurrentActive,true)">333333</div>
     </ul>
     <!-- 下方商品列表 -->
     <ul class="productCatalogue" >
@@ -39,9 +64,14 @@
 
 <script setup>
 import { reqSearch } from "@/api/search";
-import { onMounted, ref } from "vue";
-let bannerTitle=''
+import { onMounted, ref,reactive } from "vue";
 let productLi = ref([]);
+
+
+/* 点击价格——弹出的响应式数据 */
+let isCurrentActive = ref('1'); // 综合:'1', 价格:'2' , 分类:'3'
+let isShowPriceBox = ref(false) // 是否显示筛选区域
+
 
 const props = defineProps({
   searchVal: {
@@ -65,11 +95,55 @@ const getReqSearch = async () => {
     console.log(error, "33获取数据失败~~");
   }
 };
+
+
+/* 点击价格——展示价格排序的选项框 */
+let handlerPriceBox=(n,isMask)=>{
+  isShowPriceBox.value = !isMask;
+  isCurrentActive.value = n;
+ }
 </script>
 
 <style lang="less" scoped>
+/*筛选-input的样式*/
+.PriceBox-screen{
+ display: flex;
+ margin: 20px 0;
+ justify-content: center;
+ line-height: 28px;
+  .PriceBox-screenIn{
+    text-align: center;
+    width: 30%;
+    height: 22px;
+    margin: 0 10px;
+   }
+}
+/*排序-btn样式*/
+.PriceBox-sort{
+ 
+ margin: 20px 22px;
+ display: flex;
+ justify-content: start;
+ line-height: 28px;
+ .PriceBox-sortL,.PriceBox-sortR{
+  margin: 0 10px;
+  width: 30%;
+ }
+}
+/*底部按钮样式*/
+.PriceBox-btn{
+  width: 50%;
+  margin-top: 34px;
+  height: 50px;
+}
+.active{
+  color: red;
+}
 /*商品标题*/
+
 .headline {
+  color: black;
+  position: relative;
   display: flex;
   justify-content: space-around; /*元素在主轴上的对齐方式——平分剩余空间*/
   /*flex-flow 属性是 flex-direction 和 flex-wrap 属性的复合属性。row从左到右，nowrap不换行*/
@@ -83,7 +157,6 @@ const getReqSearch = async () => {
     align-items: center; /*侧轴上的子元素（单行）—— 垂直居中对齐*/
   }
   .ImgArrows {
-    background: skyblue;
     display: flex;
     flex-direction: column; /*设置主轴为y，从上到下排列*/
     margin-left: 3px;
@@ -158,5 +231,23 @@ const getReqSearch = async () => {
       }
     }
   }
+}
+/*蒙版*/
+.mask{
+  width: 100%;
+  height: 1000px;
+  background: black;
+  opacity: .5;
+  position: absolute;
+ top: 36px;
+  z-index: 10;
+}
+.PriceBox{
+  width: 100%;
+  height: 200px;
+  background:rgb(228, 202, 248);
+  position: absolute;
+  top: 36px;
+  z-index: 20;
 }
 </style>
