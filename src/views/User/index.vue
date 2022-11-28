@@ -11,11 +11,12 @@
         
         </div>
         <div class="bottom">
-            <div class="icon"></div>
-            <div class="bottom1" v-for="item in 10">
-                <img src="../../assets/5.jpg" class="img1">
-                <text class="text1">我的订单
-                    <router-link to="/goshoping">点击去值得买</router-link>
+           
+            <div class="bottom1" v-for="(item,index) in userInfoStore.navList">
+                <img :src="item.picUrl" class="img1" @click="goshoping" >
+                <text class="text1" @click="gocenter">{{item.mainTitle}}
+                    <!--     -->
+                    <!-- <router-link to="/goshoping">点击去值得买</router-link> -->
                 </text>
             </div>
         </div>
@@ -25,6 +26,9 @@
 <script setup>
 
 import { useRoute, useRouter } from 'vue-router';
+import { useUserInfoStore } from '../../store/userinfo'
+import { onMounted} from 'vue'
+const userInfoStore = useUserInfoStore()
 const router = useRouter()
 // const route = useRoute()
 // 点击回调
@@ -32,6 +36,18 @@ const gologin=()=>{
     router.push('/login')
     console.log(111);
 }
+const gocenter=()=>{
+    router.push('/center')
+}
+const goshoping=()=>{
+    router.push('/goshoping')
+}
+
+onMounted(() => {
+    //让仓库发请求获取轮播图的数据 
+    userInfoStore.getimg()
+    
+})
 </script>
 
 <style  scoped>
@@ -52,7 +68,7 @@ const gologin=()=>{
     height: 50px;
     background: rgb(63, 63, 63);
     display: flex;
-    margin-bottom:20px ;
+    margin-bottom:10px ;
     
 }
 /* 用户信息的头像 */
@@ -76,11 +92,11 @@ const gologin=()=>{
 }
 /* 下面的大盒子 */
 .bottom{
-    height: 100%;
+    height: 617px;
     width:100%;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 10rpx;
+    /* margin-top: 10rpx; */
     display: flex;
     
     /* align-items: center; */
@@ -89,19 +105,17 @@ const gologin=()=>{
 /* 下面的小盒子 */
 .bottom1{
     width: 32.8%;
-    height: 120px;
+    
     background:rgb(242, 242, 242);
     border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
-    
-   
 }
 .img1{
     width: 50px;
     height:50px;
     justify-content:center;
-    margin:20px auto;
+    margin:10px auto;
     
 }
 .text1{

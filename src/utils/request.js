@@ -30,7 +30,7 @@ service.interceptors.response.use(
 	async (response) => {
 		// 对响应数据做点什么
 		const res = response.data;
-		if (!res || res.code !== 200) {
+		// if (!res || res.code !== 200) {
 			/* 成功数据的code值为20000/200 */
 			if (!res) {
 				/* 成功数据的code值为20000/200 */
@@ -43,7 +43,7 @@ service.interceptors.response.use(
 					type: "error",
 					duration: 5 * 1000,
 				});
-			}
+			// }
 			return Promise.reject(service.interceptors.response);
 		} else {
 			return res.data; /* 返回成功响应数据中的data属性数据 */
