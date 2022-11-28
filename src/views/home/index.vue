@@ -190,10 +190,10 @@ const changeCategoryId = (tab: TabsPaneContext, event: Event) => {
 
 <style scoped lang='less'>
 @color: #dd1a21;
-/deep/ .el-tabs__item.is-top.is-active {
+:deep(.el-tabs__item.is-top.is-active){
   color: @color;
 }
-/deep/ .el-tabs__active-bar.is-top {
+:deep(.el-tabs__active-bar.is-top){
   background: @color;
 }
 a {

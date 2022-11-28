@@ -15,9 +15,9 @@ const service = axios.create({
 service.interceptors.request.use(
 	(config) => {
 		//uuid:插件生成用户(未登录)临时身份(唯一)
-	// config.headers.userTempId = getUserUUID();
+	 config.headers.userTempId = getUserUUID();
 	
-    config.headers.token = token;
+   // config.headers.token = token;
 		//请求携带token[pinia小仓库里面]
 		return config;
 	}
