@@ -55,11 +55,10 @@ const handleLogin = async () => {
 };
 </script>
 
-<style  scoped>
-
-.box{
-width: 100%;
-height: 667px;
+<style scoped>
+	.box {
+		width: 100%;
+		height: 667px;
 
 /* background:rgb(105, 223, 255); */
 background:linear-gradient( to top,#ddfcfc,#82e7e1,#ccf2fb);
@@ -94,5 +93,4 @@ align-items: center;
 /* .button{
    
 } */
-
 </style>

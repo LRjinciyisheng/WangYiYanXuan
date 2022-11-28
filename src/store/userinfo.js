@@ -1,21 +1,19 @@
 // defineStore定义小仓库的写法,书写形式有两种:选择式{} 组合式()=>{}
-import { result } from 'lodash';
-import { defineStore } from 'pinia';
+import { result } from "lodash";
+import { defineStore } from "pinia";
 //封装函数:获取token | 持久化存储token | 删除token
 
 // 引入登录的函数 轮播 瀑布流 注册获取验证码
 import {reqLogin,reqnavWap,reqtopic,reqUserRegister} from '../api/user'
 
 // 定义小仓库
-export const useUserInfoStore =defineStore('userInfo',{
-
-
-  state:()=>({
-      //轮播图的数据
-      navList:[],
-      //瀑布流的数据
-      fallsList:[]
-  }),
+export const useUserInfoStore = defineStore("userInfo", {
+	state: () => ({
+		//轮播图的数据
+		navList: [],
+		//瀑布流的数据
+		fallsList: [],
+	}),
 
     // actions异步请求|逻辑
     actions:{
