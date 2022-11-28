@@ -257,13 +257,34 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import { onMounted } from "vue";
+<script setup >
+import { onMounted,ref } from "vue";
+import {reqGoodDetail} from '@/api/GoodsDetail/index';
+
+// 商品数据
+let goodsDetail= ref({});
+// 商品Id
+let skuId = ref(2);
 
 onMounted(() => {
-  // 按钮显示与隐藏回调
+// 按钮显示与隐藏回调
   showOrHidden();
+  getgoodsDetail(skuId.value);
 });
+
+// 获取商品详情回调
+const getgoodsDetail = async(skuId)=>{
+    try {
+
+    let result = await reqGoodDetail(skuId);
+    goodsDetail.value = result.data;
+    console.log(result );
+
+  } catch (error) {
+    return Promise.reject(new Error(error.message));
+  }
+}
+
 // 按钮显示与隐藏回调
 const showOrHidden = () => {
   window.onscroll = () => {

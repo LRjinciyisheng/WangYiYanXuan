@@ -1,4 +1,7 @@
 <template>
+
+
+
   <div class="search-container">
     <div class="search-container-content">
       <!-- 搜索输入框 -->
@@ -61,6 +64,10 @@
     </div>
   
   </div>
+
+
+
+
 </template>
 
 <script setup>
@@ -70,6 +77,13 @@ import { reqSearchInit } from "@/api/search";
 import { Search } from "@element-plus/icons-vue";
 import KeywordList from "./KeywordList.vue";
 import ProductsList from "./ProductsList.vue";
+
+
+
+
+
+
+
 const router = useRouter();
 
 let searchVal = ref("");
@@ -96,30 +110,33 @@ const getReqSearchInit = async () => {
   try {
     const res = await reqSearchInit();
     placeholderText.value = res.defaultKeyword.keyword;
-    //console.log( res.defaultKeyword.keyword,'33333556565');
-    //console.log(res, "sssssssssss23423423");
+   
     searchHotList.value = res.hotKeywordVOList;
-    // console.log(res, "ssssssssss");
+
   } catch (error) {
     console.log(error);
   }
 };
-
+/* 搜索框——回车 */
 const searcHistory = (e) => {
- 
-  if (!searchVal.value.trim()) return;
+  if (!searchVal.value.trim())return;//如果两端去掉空格之后有值
 
-  console.log(e, "eeeee");
-  if (searchH.value.length >= 3) {
-    searchH.value.pop();
-    console.log("大于3了");
-  }
-  handleSearch(searchVal.value);
-
-  searchH.value.unshift(searchVal.value);
-  localStorage.setItem("searchl", JSON.stringify(searchH.value));
-
+  let index1 = searchH.value.indexOf(searchVal.value)//数组中已有当前输入的值，找到当前值的坐标
   
+  if(index1!==-1){//删除找到的已有元素
+    searchH.value.splice(index1,1)
+  }
+
+
+  searchH.value.unshift(searchVal.value);//从头部插入
+
+  if (searchH.value.length > 3) {//如果长度大于3
+    searchH.value.pop();//从尾部删除一个
+  }
+
+
+  handleSearch(searchVal.value);
+  localStorage.setItem("searchl", JSON.stringify(searchH.value));
 };
 
 let deleHistory = () => {
@@ -145,6 +162,10 @@ let handleSearch = (keyword) => {
 
 <style lang="less" scoped>
 @import url("./index.less");
+
+
+
+
 
 
 </style>
