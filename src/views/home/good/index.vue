@@ -21,21 +21,44 @@
         <p class="title2">{{ good.category.frontDesc }}</p>
       </div>
       <div class="show">
-        <div class="item" v-for="item in good.itemList" :key="item.id">
+        <div
+          class="item"
+          v-for="item in good.itemList"
+          :key="item.id"
+          @click="goDetail(item.id)"
+        >
           <img :src="item.listPicUrl" alt="" />
           <div class="desc">{{ item.name }}</div>
           <div class="price"><span>¥</span>{{ item.retailPrice }}</div>
         </div>
       </div>
     </div>
+    <van-loading
+      size="24px"
+      class="good-loading"
+      color="#dd1a21"
+      text-color="#bbb"
+      v-show="homeStore.httpLoading"
+      >加载中...</van-loading
+    >
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import { useHomeStore } from "../../../stores/home";
+import { useRouter } from "vue-router";
 const homeStore = useHomeStore();
-onMounted(() => {});
+const router = useRouter();
+const goDetail = (goodId) => {
+  console.log(goodId);
+  router.push({
+    name: "GoodsDetail",
+    query: {
+      categoryId: goodId,
+    },
+  });
+};
 </script>
 
 <style scoped lang='less'>
@@ -99,6 +122,11 @@ onMounted(() => {});
         }
       }
     }
+  }
+  .good-loading {
+    position: fixed;
+    top: 30%;
+    left: 40%;
   }
 }
 </style>

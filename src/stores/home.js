@@ -5,6 +5,7 @@ export const useHomeStore = defineStore("homeStore", {
   state: () => ({
     recommendList: {},
     otherList: {},
+    httpLoading: true,
   }),
   actions: {
     //获取推荐页面数据
@@ -14,8 +15,11 @@ export const useHomeStore = defineStore("homeStore", {
     },
     //获取某个频道页面数据
     async getOtherList(categoryId) {
+      this.httpLoading = true;
+      this.otherList = {};
       let res = await reqOtherData(categoryId);
       this.otherList = res;
+      this.httpLoading = false;
     },
   },
   getters: {

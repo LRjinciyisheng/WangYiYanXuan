@@ -7,26 +7,31 @@
         class="w-50 m-2 ipt"
         placeholder="搜索商品"
         :prefix-icon="Search"
+        readonly
+        @click="goSearch"
       />
-      <el-button plain class="btn">登录</el-button>
+      <el-button plain class="btn" @click="goLogin">登录</el-button>
     </div>
-    <!-- 文字导航栏 选型卡 -->
-    <el-tabs
-      v-model="categoryId"
-      stretch
-      class="demo-tabs"
-      @tab-click="changeCategoryId"
+    <!-- 导航栏 -->
+    <van-tabs
+      v-model:active="categoryId"
+      line-height="1px"
+      line-width="60px"
+      title-active-color="#dd1a21"
+      color="#dd1a21"
+      @click-tab="changeCategoryId"
     >
-      <el-tab-pane label="推荐" name="-1"> </el-tab-pane>
-      <el-tab-pane
-        :label="item.extra.operationResource.categoryName"
-        :name="item.extra.operationResource.categoryId"
+      <van-tab title="推荐" name="-1"> </van-tab>
+      <van-tab
         v-for="item in homeStore.categoryList"
+        :title="item.extra.operationResource.categoryName"
         :key="item.extra.operationResource.categoryId"
-      ></el-tab-pane>
-    </el-tabs>
+        :name="item.extra.operationResource.categoryId"
+      >
+      </van-tab>
+    </van-tabs>
     <!-- 滚动视图 -->
-    <div class="scroll">
+    <div class="scroll" ref="scroll">
       <div v-show="categoryId == '-1'" class="scroll-tj">
         <!-- 轮播 -->
         <el-carousel class="swiper" height="150px" loop>
@@ -165,37 +170,76 @@
       </div>
       <Good v-show="categoryId != '-1'"></Good>
     </div>
+    <!-- 返回顶部按钮 -->
+    <div class="topUp" @click="backTop" v-show="showToTop">
+      <img src="./images/top.png" style="width: 100%; height: 100%" alt="" />
+    </div>
   </div>
 </template>
 
 <script setup lang='ts'>
 import Good from "./good/index.vue";
 import { Search } from "@element-plus/icons-vue";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch, nextTick } from "vue";
 import type { TabsPaneContext } from "element-plus";
+import { useRouter, useRoute } from "vue-router";
 // 引入仓库
 import { useHomeStore } from "../../stores/home";
+
 //声明响应式数据 请求的参数
 const categoryId = ref("-1");
 const homeStore = useHomeStore();
+const router = useRouter();
+const route = useRoute();
+const showToTop = ref(false);
+const scroll = ref();
 // 页面挂载 获取首页数据
 onMounted(() => {
   homeStore.getRecommendList();
+  //给scroll添加滚动条监听事件
+  scroll.value.addEventListener("scroll", handleScroll);
 });
+//返回顶部按钮的回调
+const backTop = () => {
+  let top = scroll.value.scrollTop; //获取点击时页面的滚动条纵坐标位置
+  const timeTop = setInterval(() => {
+    scroll.value.scrollTop = top -= 10; //一次减10往上滑动
+    if (top <= 0) {
+      clearInterval(timeTop);
+    }
+  }, 5); //定时调用函数使其更顺滑
+};
+//scroll滚动条监听事件的回调
+const handleScroll = () => {
+  // console.log(scroll.value.scrollTop);
+  if (scroll.value.scrollTop > 700) {
+    showToTop.value = true;
+  } else {
+    showToTop.value = false;
+  }
+};
 //点击选型卡 发送对应频道的请求
-const changeCategoryId = (tab: TabsPaneContext, event: Event) => {
-  homeStore.getOtherList(tab.props.name);
+const changeCategoryId = ({ name, title, event, disabled }) => {
+  if (name != -1) {
+    homeStore.getOtherList(name);
+  }
+};
+//点击input跳转搜索
+const goSearch = () => {
+  router.push({
+    name: "Search",
+  });
+};
+//点击跳转登录
+const goLogin = () => {
+  router.push({
+    name: "Login",
+  });
 };
 </script>
 
 <style scoped lang='less'>
 @color: #dd1a21;
-:deep(.el-tabs__item.is-top.is-active){
-  color: @color;
-}
-:deep(.el-tabs__active-bar.is-top){
-  background: @color;
-}
 a {
   text-decoration: none;
   color: #000;
@@ -205,6 +249,7 @@ a {
 .home {
   height: 100%;
   width: 100%;
+
   .top {
     width: 375px;
     display: flex;
@@ -226,18 +271,11 @@ a {
       border: 1px solid @color;
     }
   }
-  .demo-tabs > .el-tabs__content {
-    padding: 32px;
-    color: #6b778c;
-    font-size: 32px;
-    font-weight: 600;
-  }
   .scroll {
     height: 580px;
     width: 375px;
     overflow-y: scroll;
     overflow-x: hidden;
-    margin-top: -15px;
     .scroll-tj {
       width: 375px;
       .swiper {
@@ -506,6 +544,15 @@ a {
         }
       }
     }
+  }
+  .topUp {
+    position: fixed;
+    right: 25px;
+    bottom: 70px;
+    width: 40px;
+    height: 40px;
+    z-index: 999;
+    border-radius: 50%;
   }
 }
 </style>
