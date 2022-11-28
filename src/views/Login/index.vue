@@ -8,13 +8,13 @@
             <!-- <img src="./images/1.jpg" alt=""> -->
 
         </div>
-        <div class="">账号
+        <div class="input1">账号
             <el-input placeholder="请输入用户名" size="min" class="input" v-model="loginForm.username"/>
         </div>
-        <div class="">密码
+        <div class="input1">密码
             <el-input type="text" placeholder="请输入密码" size="min" class="input" v-model="loginForm.password"/>
         </div>
-        <el-button style="margin-top:20px" type="primary" size="big" class="button" @click.prevent="handleLogin">注册/登录
+        <el-button style="margin:25px 140px" type="primary" size="big" class="button" @click.prevent="handleLogin">注册/登录
         </el-button>
        </div>
     </div>
@@ -25,7 +25,11 @@
 import {ref} from 'vue'
 // 引入仓库
 import { useUserInfoStore} from '../../store/userinfo'
+//路由跳转
+import { useRouter } from "vue-router";
+const router = useRouter();
 const userInfoStore = useUserInfoStore()
+
 //  声明响应式数据绑定用户名和密码
 const loginForm = ref({
     username:'111',
@@ -35,19 +39,19 @@ const loginForm = ref({
 //点击登录按钮
 const handleLogin = async () => {
   const { username, password } = loginForm.value;
-  try {
+//   try {
     
-    //userInfoStore仓库调用login方法，携带账号与密码发请求---->登录请求
-  let result=await userInfoStore.login(username, password);
-  console.log(userInfoStore.login);
-  return result
-  router.push(
-    
-  )
+//     //userInfoStore仓库调用login方法，携带账号与密码发请求---->登录请求
+//   let result=await userInfoStore.login(username, password);
+//   console.log(userInfoStore.login);
+//   return result
+  router.push( {
+    path:'/goshoping'
+  } )
 
-  } finally {
+//   } finally {
 
-  }
+//   }
 };
 </script>
 
@@ -83,6 +87,9 @@ align-items: center;
 .input{
     width: 70%;
     padding:10px;
+}
+.input1{
+    text-align: center;
 }
 /* .button{
    

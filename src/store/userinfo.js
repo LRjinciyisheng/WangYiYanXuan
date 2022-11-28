@@ -3,8 +3,8 @@ import { result } from 'lodash';
 import { defineStore } from 'pinia';
 //封装函数:获取token | 持久化存储token | 删除token
 
-// 引入登录的函数 轮播 瀑布流
-import {reqLogin,reqnavWap,reqtopic} from '../api/user'
+// 引入登录的函数 轮播 瀑布流 注册获取验证码
+import {reqLogin,reqnavWap,reqtopic,reqUserRegister} from '../api/user'
 
 // 定义小仓库
 export const useUserInfoStore =defineStore('userInfo',{
@@ -63,7 +63,19 @@ export const useUserInfoStore =defineStore('userInfo',{
             }catch(error){
               return Promise.reject(new Error(error.message));
             }
+          },
+
+          async getUserCode(phone){
+            try{
+              let result = await reqUserRegister(phone);
+              if(result.code==200){
+                return 'ok'
+              }
+            }catch{
+              return Promise.reject(new Error(result.message))
+            }
           }
+
     },
   
 })

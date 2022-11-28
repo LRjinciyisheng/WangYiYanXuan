@@ -11,6 +11,8 @@ import App from "./App.vue";
 import "reset-css";
 import router from "./router";
 const app = createApp(App);
+
+
 // for (const name in Elicons) {
 //   app.component(name, Elicons[name]);
 // }
@@ -18,6 +20,8 @@ const app = createApp(App);
 app.use(pinia)
     .use(router)
     .use(ElementPlus, { size: "small", zIndex: 3000, locale: zhCn })
+ 
+    
   .mount("#app");
 // 图标并进行全局注册
 

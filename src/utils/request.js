@@ -16,9 +16,9 @@ service.interceptors.request.use((config) => {
 		// config.headers.userTempId = getUserUUID();
 		
 		//如果登录成了vuex仓库就有了token，登录已有其余的请求需要请求头携带token
-		if(store.state.user.token){
-			 config.headers.token = store.state.user.token;
-		}
+		// if(store.state.user.token){
+		// 	 config.headers.token = store.state.user.token;
+		// }
 		//请求携带token[pinia小仓库里面]
 		return config;
 
@@ -31,7 +31,7 @@ service.interceptors.response.use(
 	async (response) => {
 		// 对响应数据做点什么
 		const res = response.data;
-		if (!res || res.code !== 200) { /* 成功数据的code值为20000/200 */
+		// if (!res || res.code !== 200) { /* 成功数据的code值为20000/200 */
 		if (!res) { /* 成功数据的code值为20000/200 */
 			//统一的错误提示
 			ElMessage({
@@ -40,7 +40,7 @@ service.interceptors.response.use(
 				duration: 5 * 1000
 			})
 
-		}
+		// }
 			return Promise.reject(service.interceptors.response);
 		} else {
 			return res.data; /* 返回成功响应数据中的data属性数据 */
