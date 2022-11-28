@@ -48,7 +48,7 @@ export default defineConfig((mode) => {
           rewrite: (path) => path.replace(/^\/api/, ''),//路径重写
         },
         '/wy-api': {
-          target: 'https://m.you.163.com/',//实际请求接口url
+          target: 'https://m.you.163.com',//实际请求接口url
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/wy-api/, '')
         },

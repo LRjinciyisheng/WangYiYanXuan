@@ -96,16 +96,16 @@ const tabClick = (pane) => {
   font-size: 14px;
   overflow: scroll;
 }
-::v-deep .el-tabs__active-bar.is-left{
+:deep(.el-tabs__active-bar.is-left){
   right: 95px;
 }
-::v-deep .el-tabs__active-bar {
+:deep(.el-tabs__active-bar) {
   background-color: #ab2b2b;
 }
-::v-deep .el-tabs__item{
+:deep(.el-tabs__item){
   margin-top: 5px;
 }
-::v-deep .el-tabs__item.is-active{
+:deep(.el-tabs__item.is-active){
   color: #ab2b2b;
 }
 
