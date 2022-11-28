@@ -9,9 +9,13 @@
       pause-on-hover="true"
       arrow="hover"
     >
-      <el-carousel-item v-for="item in 5" :key="item">
+      <el-carousel-item v-for="(item, index) in 3" :key="index">
         <img
-          src="https://yanxuan-item.nosdn.127.net/6d92dd67bc9d63e1a2a99e4ce8bb55f0.jpg?type=webp&imageView&quality=75&thumbnail=750x0"
+          :src="
+            item.imgUrl
+              ? item.imgUrl
+              : 'https://yanxuan-item.nosdn.127.net/6d92dd67bc9d63e1a2a99e4ce8bb55f0.jpg?type=webp&imageView&quality=75&thumbnail=750x0'
+          "
           alt=""
           style="width: 100%; height: 100%"
         />
@@ -248,42 +252,29 @@
       <button class="left">
         <i class="iconfont icon-iconzhucetouxiang"></i>
       </button>
-      <button class="middle">立即购买</button>
-      <button class="right">加入购物车</button>
+      <button class="middle"><router-link class="a" to="/pay" >立即购买</router-link> </button>
+      <button class="right"><router-link class="a" to='/shopCart' >加入购物车</router-link></button>
     </div>
     <!-- 回到顶部按钮 -->
-    <div class="backtop" style="display:none" @click="back">
+    <div class="backtop" style="display: none" @click="back">
       <i class="iconfont icon-shangfan"></i>
     </div>
   </div>
 </template>
-<script setup >
-import { onMounted,ref } from "vue";
-import {reqGoodDetail} from '@/api/GoodsDetail/index';
+<script setup>
+import { onMounted, ref } from "vue";
+import {useGoodsDetailStore} from '@/stores/goodsDetail';
 
-// 商品数据
-let goodsDetail= ref({});
 // 商品Id
 let skuId = ref(2);
-
+let GoodsDetailStore = useGoodsDetailStore();
 onMounted(() => {
-// 按钮显示与隐藏回调
+  // 按钮显示与隐藏回调
   showOrHidden();
-  getgoodsDetail(skuId.value);
+  GoodsDetailStore.getgoodsDetail(skuId.value);
 });
 
-// 获取商品详情回调
-const getgoodsDetail = async(skuId)=>{
-    try {
 
-    let result = await reqGoodDetail(skuId);
-    goodsDetail.value = result.data;
-    console.log(result );
-
-  } catch (error) {
-    return Promise.reject(new Error(error.message));
-  }
-}
 
 // 按钮显示与隐藏回调
 const showOrHidden = () => {
@@ -651,12 +642,20 @@ const back = () => {
     }
     .middle {
       width: 148px;
+      .a{
+        text-decoration: none;
+        color: #777;
+      }
     }
     .right {
       width: 148px;
       background: #dd1a21;
       border: 1px solid #dd1a21;
-      color: #fff;
+      
+        .a{
+        text-decoration: none;
+        color: #fff;
+    }
     }
   }
   .backtop {
