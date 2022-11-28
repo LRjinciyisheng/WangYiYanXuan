@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="(item, index) in keywordListRef" :key="index">
+    <li v-for="(item, index) in keywordListRef" :key="index" @click="()=>handleSearch(item)">
       <span>{{ item }}</span>
       <el-icon><ArrowRight /></el-icon>
     </li>
@@ -20,11 +20,15 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  handleSearch:{
+    type: Function,
+    required: true,
+  }
 });
 
 
 onMounted(() => {
-  getReqSearchAutoComplete();
+  //getReqSearchAutoComplete();
 });
 watch(
   ()=>props.searchVal, 
@@ -38,21 +42,30 @@ const getReqSearchAutoComplete = async () => {
     });
     keywordListRef.value = res1;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
+
 
 
 </script>
 
 <style lang="less" scoped>
 ul {
+  border-top: 1px solid #d3d4dc;
+
+  padding-top: 15px;
+  padding-left: 10px;
+  background: rgb(248, 251, 253);
   li {
+
+    text-align: center;
+    line-height:8px ;
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid #d3d4dc;
     margin-bottom: 15px;
-    padding-bottom: 5px;
+    padding: 0 10px 5px 15px;
     &:last-child {
       border-bottom: none;
     }
