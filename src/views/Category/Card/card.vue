@@ -98,7 +98,7 @@ watch(
       display: block;
       margin-top: 15px;
     }
-    ::v-deep .el-divider--horizontal{
+    :deep(.el-divider--horizontal){
       margin: 12px 0;
       padding: 4px;
       width: 95%;
