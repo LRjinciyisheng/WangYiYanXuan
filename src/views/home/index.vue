@@ -11,45 +11,56 @@
       <el-button plain class="btn">登录</el-button>
     </div>
     <!-- 文字导航栏 选型卡 -->
-    <el-tabs v-model="activeName" stretch class="demo-tabs">
-      <el-tab-pane label="推荐" name="推荐"> </el-tab-pane>
+    <el-tabs
+      v-model="categoryId"
+      stretch
+      class="demo-tabs"
+      @tab-click="changeCategoryId"
+    >
+      <el-tab-pane label="推荐" name="-1"> </el-tab-pane>
       <el-tab-pane
-        label="居家生活"
-        :name="item"
-        v-for="item in 10"
-        :key="item"
+        :label="item.extra.operationResource.categoryName"
+        :name="item.extra.operationResource.categoryId"
+        v-for="item in homeStore.categoryList"
+        :key="item.extra.operationResource.categoryId"
       ></el-tab-pane>
     </el-tabs>
     <!-- 滚动视图 -->
     <div class="scroll">
-      <div v-show="activeName == '推荐'" class="scroll-tj">
+      <div v-show="categoryId == '-1'" class="scroll-tj">
         <!-- 轮播 -->
-        <el-carousel class="swiper" height="150px">
-          <el-carousel-item v-for="banner in 4" :key="banner" class="item">
-            <img src="./images/1.jpg" class="banner" alt="" />
+        <el-carousel class="swiper" height="150px" loop>
+          <el-carousel-item
+            v-for="banner in homeStore.banner"
+            :key="banner.id"
+            class="item"
+          >
+            <a href="javascript:;">
+              <img :src="banner.picUrl" class="banner" alt="" />
+            </a>
           </el-carousel-item>
         </el-carousel>
         <!-- 三个图标 -->
         <div class="icons">
-          <div class="item">
-            <img src="./images/1.jpg" class="icon" alt="" />
-            <span class="title">网易自营品牌</span>
-          </div>
-          <div class="item">
-            <img src="./images/1.jpg" class="icon" alt="" />
-            <span class="title">30天无忧退款</span>
-          </div>
-          <div class="item">
-            <img src="./images/1.jpg" class="icon" alt="" />
-            <span class="title">48小时快速退款</span>
+          <div
+            class="item"
+            v-for="(icon, index) in homeStore.icons"
+            :key="index"
+          >
+            <img :src="icon.icon" class="icon" alt="" />
+            <span class="title">{{ icon.desc }}</span>
           </div>
         </div>
         <!-- 商品分类小图 -->
         <div class="goods">
-          <div class="item" v-for="item in 10" :key="item">
+          <div
+            class="item"
+            v-for="(good, index) in homeStore.goods"
+            :key="index"
+          >
             <a href="javascript:;">
-              <img src="./images/1.jpg" class="good" alt="" />
-              <p class="title">新品首发</p>
+              <img :src="good.picUrl" class="good" alt="" />
+              <p class="title">{{ good.text }}</p>
             </a>
           </div>
         </div>
@@ -57,23 +68,32 @@
         <h3 class="title1">- 新人专享礼 -</h3>
         <div class="newPeople">
           <div class="left">
-            <div class="left-text">新人专享礼包</div>
-            <img
-              src="https://yanxuan.nosdn.127.net/static-union/1648017994dd2933.png"
-              alt=""
-            />
+            <a href="javascript:;">
+              <div class="left-text">新人专享礼包</div>
+              <img
+                src="https://yanxuan.nosdn.127.net/static-union/1648017994dd2933.png"
+                alt=""
+              />
+            </a>
           </div>
           <div class="right">
             <div class="shang">
-              <div class="shang-text">
-                <p>福利社</p>
-                <span>今日特价</span>
-              </div>
-              <img src="./images/1.jpg" alt="" />
+              <a href="javascript:;">
+                <div class="shang-text">
+                  <p>福利社</p>
+                  <span>今日特价</span>
+                </div>
+                <img :src="(homeStore.newPeople[0] || []).picUrl" alt="" />
+              </a>
             </div>
             <div class="xia">
-              <div class="xia-text">新人拼团</div>
-              <img src="./images/1.jpg" alt="" />
+              <a href="javascript:;">
+                <div class="xia-text">
+                  <p>新人拼团</p>
+                  <div class="xia-text2">1元起包邮</div>
+                </div>
+                <img :src="(homeStore.newPeople[1] || []).showPicUrl" alt="" />
+              </a>
             </div>
           </div>
         </div>
@@ -81,15 +101,27 @@
         <h3 class="title2">类目热销榜</h3>
         <div class="hotSale">
           <div class="hot-top">
-            <div class="item" v-for="item in 2" :key="item">
-              <div class="top-text">服饰鞋包</div>
-              <img src="./images/1.jpg" alt="" />
+            <div
+              class="item"
+              v-for="(item, index) in homeStore.hotSaleTop"
+              :key="index"
+            >
+              <a href="javascript:;">
+                <div class="top-text">{{ item.categoryName }}</div>
+                <img :src="item.showPicUrl" alt="" />
+              </a>
             </div>
           </div>
           <div class="hot-bottom">
-            <div class="item" v-for="item in 7" :key="item">
-              <div class="bottom-text">居家生活榜</div>
-              <img src="./images/1.jpg" alt="" />
+            <div
+              class="item"
+              v-for="(item, index) in homeStore.hotSaleBottom"
+              :key="index"
+            >
+              <a href="javascript:;">
+                <div class="bottom-text">{{ item.categoryName }}</div>
+                <img :src="item.showPicUrl" alt="" />
+              </a>
             </div>
           </div>
         </div>
@@ -103,8 +135,20 @@
               <p>严选众筹</p>
               <span>探索美与用</span>
             </div>
-            <img src="./images/1.jpg" alt="" />
-            <img src="./images/1.jpg" alt="" />
+            <img
+              :src="
+                (((homeStore.lastTwoGoods[1] || {}).styleItem || {})
+                  .picUrlList || [])[0]
+              "
+              alt=""
+            />
+            <img
+              :src="
+                (((homeStore.lastTwoGoods[1] || {}).styleItem || {})
+                  .picUrlList || [])[1]
+              "
+              alt=""
+            />
           </div>
         </div>
         <!-- 最底部 -->
@@ -119,7 +163,7 @@
           </div>
         </div>
       </div>
-      <Good v-show="activeName != '推荐'"></Good>
+      <Good v-show="categoryId != '-1'"></Good>
     </div>
   </div>
 </template>
@@ -131,12 +175,17 @@ import { ref, onMounted } from "vue";
 import type { TabsPaneContext } from "element-plus";
 // 引入仓库
 import { useHomeStore } from "../../stores/home";
-const activeName = ref("推荐");
+//声明响应式数据 请求的参数
+const categoryId = ref("-1");
 const homeStore = useHomeStore();
 // 页面挂载 获取首页数据
 onMounted(() => {
   homeStore.getRecommendList();
 });
+//点击选型卡 发送对应频道的请求
+const changeCategoryId = (tab: TabsPaneContext, event: Event) => {
+  homeStore.getOtherList(tab.props.name);
+};
 </script>
 
 <style scoped lang='less'>
@@ -150,7 +199,9 @@ onMounted(() => {
 a {
   text-decoration: none;
   color: #000;
+  -webkit-tap-highlight-color: transparent;
 }
+
 .home {
   height: 100%;
   width: 100%;
@@ -184,7 +235,8 @@ a {
   .scroll {
     height: 580px;
     width: 375px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
     margin-top: -15px;
     .scroll-tj {
       width: 375px;
@@ -305,6 +357,17 @@ a {
             position: relative;
             .xia-text {
               margin: 15px 0 0 15px;
+              .xia-text2 {
+                background: #bbb;
+                opacity: 0.7;
+                width: 68px;
+                height: 20px;
+                font-size: 14px;
+                color: white;
+                margin-top: 5px;
+                text-align: center;
+                line-height: 20px;
+              }
             }
             img {
               width: 100px;
@@ -332,11 +395,12 @@ a {
           .item {
             width: 170px;
             height: 100px;
-            background: rgb(221, 235, 241);
+            background: rgb(234, 240, 243);
             margin: 0 3px;
             position: relative;
             .top-text {
               margin: 30px 0 0 10px;
+              font-size: 14px;
             }
             img {
               width: 100px;

@@ -2,21 +2,29 @@
   <div class="good">
     <!-- 轮播 -->
     <el-carousel class="swiper" height="150px">
-      <el-carousel-item v-for="item in 4" :key="item" class="item">
-        <img src="../images/1.jpg" class="banner" alt="" />
+      <el-carousel-item
+        v-for="(item, index) in homeStore.goodsBanner"
+        :key="index"
+        class="item"
+      >
+        <img :src="item.picUrl" class="banner" alt="" />
       </el-carousel-item>
     </el-carousel>
     <!-- 商品展示 -->
-    <div class="goodShow" v-for="item in 3" :key="item">
+    <div
+      class="goodShow"
+      v-for="good in homeStore.goodsList"
+      :key="good.category.id"
+    >
       <div class="title">
-        <p class="title1">四季款</p>
-        <p class="title2">四季款</p>
+        <p class="title1">{{ good.category.name }}</p>
+        <p class="title2">{{ good.category.frontDesc }}</p>
       </div>
       <div class="show">
-        <div class="item" v-for="item in 7" :key="item">
-          <img src="../images/1.jpg" alt="" />
-          <div class="desc">裸睡亲肤,经典针织四件套 针织四件套</div>
-          <div class="price"><span>¥</span>349</div>
+        <div class="item" v-for="item in good.itemList" :key="item.id">
+          <img :src="item.listPicUrl" alt="" />
+          <div class="desc">{{ item.name }}</div>
+          <div class="price"><span>¥</span>{{ item.retailPrice }}</div>
         </div>
       </div>
     </div>
@@ -24,6 +32,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from "vue";
+import { useHomeStore } from "../../../stores/home";
+const homeStore = useHomeStore();
+onMounted(() => {});
 </script>
 
 <style scoped lang='less'>
