@@ -98,7 +98,6 @@ const getPayInfo = async () => {
     let result = await reqTradeInfo();
     
     payInfo.value = result;
-    console.log(payInfo.value );
   } catch (error) {
     return Promise.reject(new Error(error.message));
   }
