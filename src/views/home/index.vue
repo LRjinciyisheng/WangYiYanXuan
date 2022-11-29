@@ -7,6 +7,7 @@
         class="w-50 m-2 ipt"
         placeholder="搜索商品"
         :prefix-icon="Search"
+        @focus="handleGoSearch"
       />
       <el-button plain class="btn">登录</el-button>
     </div>
@@ -169,6 +170,7 @@
 </template>
 
 <script setup lang='ts'>
+import { useRouter } from "vue-router";
 import Good from "./good/index.vue";
 import { Search } from "@element-plus/icons-vue";
 import { ref, onMounted } from "vue";
@@ -186,6 +188,12 @@ onMounted(() => {
 const changeCategoryId = (tab: TabsPaneContext, event: Event) => {
   homeStore.getOtherList(tab.props.name);
 };
+//点击input框跳转到搜索页
+
+const router = useRouter();
+const handleGoSearch=()=>{
+  router.push("/search")
+}
 </script>
 
 <style scoped lang='less'>

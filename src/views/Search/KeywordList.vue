@@ -1,4 +1,5 @@
 <template>
+  <div class="ulWrap">
   <ul>
     <li v-for="(item, index) in keywordListRef" :key="index" @click="()=>handleSearch(item)">
       <span>{{ item }}</span>
@@ -6,6 +7,7 @@
     </li>
    
   </ul>
+</div>
 </template>
 
 <script setup>
@@ -51,9 +53,10 @@ const getReqSearchAutoComplete = async () => {
 </script>
 
 <style lang="less" scoped>
-ul {
-  border-top: 1px solid #d3d4dc;
 
+ul {
+
+  border-top: 1px solid #d3d4dc;
   padding-top: 15px;
   padding-left: 10px;
   background: rgb(248, 251, 253);

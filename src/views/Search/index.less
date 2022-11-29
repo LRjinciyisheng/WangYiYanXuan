@@ -1,8 +1,10 @@
 .search-container{
   height: 100vh;
-  background-color: rgb(231, 226, 255);
+  background-color: #eee;
 
- 
+ &-content{
+  height: 100%;
+ }
 /* 搜索框和取消按钮 */
   .search-input {
     background: rgb(248, 251, 253);
@@ -37,7 +39,12 @@
         border: 1px solid black;
         padding: 6px;
         border-radius: 10%;
-      }
+      } 
+      .hot-highlight{
+          color: red;
+          border-color: red;
+         
+        }
       
     }
   }

@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <router-view />
+    <tableBar/>
   </div>
 </template>
 
