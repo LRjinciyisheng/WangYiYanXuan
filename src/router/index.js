@@ -10,6 +10,9 @@ import User from './module/user.js'//个人中心路由导入
 import Login from './module/login.js'  //登录路由导入
 import Goshoping from './module/goshoping.js' //值得买的路由
 import Center from './module/center' //个人中心跳转后的路由
+//注册的路由
+import Register from './module/register' 
+
 const routes = [
 
   ...Search,//搜索页展示
@@ -20,6 +23,7 @@ const routes = [
   ...Home, //首页展示
   ...User, //个人中心
   ...Login, //登录
+  ...Register,//注册
   ...Goshoping  ,//值得买
   ...Center //个人中心跳转后的路由
 ]

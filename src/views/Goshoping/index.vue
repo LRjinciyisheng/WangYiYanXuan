@@ -7,7 +7,7 @@
         <!-- 第二行的盒子 -->
         <div class="box1">
             <!-- 首页的图标 -->
-            <div class="svg-1">
+            <div class="svg-1" @click="gohome">
                 <svg t="1669397326320" class="icon-1" viewBox="0 0 1024 1024" version="1.1"
                     xmlns="http://www.w3.org/2000/svg" p-id="4140" width="20" height="20">
                     <path
@@ -21,9 +21,16 @@
             </div>
             <!-- 购物车和搜索的图标盒子 -->
             <div class="svg-2">
+                  <!-- 搜索的图标 -->
+                  <svg t="1669397372819" class="icon-3" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="5040" width="20" height="20" @click="gosearch">
+                    <path
+                        d="M955.069071 864.311021 740.015134 649.258107c-3.752464-3.751441-8.841366-5.860475-14.149255-5.860475-5.306866 0-10.395768 2.108011-14.149255 5.860475l-16.692171 16.692171-38.34226-38.34226c53.03796-59.810201 85.298711-138.442072 85.298711-224.478588 0-186.774871-151.952784-338.727655-338.727655-338.727655S64.527642 216.35456 64.527642 403.12943c0 186.775894 151.952784 338.728678 338.727655 338.728678 86.36909 0 165.276231-32.510438 225.170343-85.913718l38.303374 38.303374-17.34504 17.34504c-7.812943 7.813966-7.812943 20.48352 0 28.297486l215.051891 215.052914c3.753487 3.751441 8.841366 5.860475 14.149255 5.860475 5.306866 0 10.395768-2.108011 14.149255-5.860475l62.334697-62.334697C962.883037 884.794541 962.883037 872.124987 955.069071 864.311021zM104.546078 403.12943c0-164.709319 133.9999-298.709219 298.709219-298.709219s298.709219 133.9999 298.709219 298.709219S567.964616 701.839673 403.255297 701.839673 104.546078 567.838749 104.546078 403.12943zM878.585119 912.496463 691.829691 725.741036l34.036187-34.036187 186.755428 186.755428L878.585119 912.496463z"
+                        p-id="5041"></path>
+                </svg>
                 <!-- 购物车的图标 -->
                 <svg t="1669397122661" class="icon-2" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="3226" width="20" height="20">
+                    xmlns="http://www.w3.org/2000/svg" p-id="3226" width="20" height="20" @click="gogooddetail">
                     <path
                         d="M848 712H318.4c-25.6 0-46.4-19.2-48-41.6L240 201.6c-1.6-25.6-16-46.4-38.4-57.6l-48-20.8c-12.8-4.8-25.6 0-32 12.8s0 25.6 12.8 32l46.4 20.8c6.4 3.2 11.2 9.6 11.2 17.6l28.8 468.8c3.2 48 46.4 86.4 96 86.4H848c12.8 0 24-11.2 24-24s-11.2-25.6-24-25.6z"
                         p-id="3227"></path>
@@ -33,13 +40,7 @@
                     <path d="M305.6 856m-56 0a56 56 0 1 0 112 0 56 56 0 1 0-112 0Z" p-id="3229"></path>
                     <path d="M753.6 856m-56 0a56 56 0 1 0 112 0 56 56 0 1 0-112 0Z" p-id="3230"></path>
                 </svg>
-                <!-- 搜索的图标 -->
-                <svg t="1669397372819" class="icon-3" viewBox="0 0 1024 1024" version="1.1"
-                    xmlns="http://www.w3.org/2000/svg" p-id="5040" width="20" height="20">
-                    <path
-                        d="M955.069071 864.311021 740.015134 649.258107c-3.752464-3.751441-8.841366-5.860475-14.149255-5.860475-5.306866 0-10.395768 2.108011-14.149255 5.860475l-16.692171 16.692171-38.34226-38.34226c53.03796-59.810201 85.298711-138.442072 85.298711-224.478588 0-186.774871-151.952784-338.727655-338.727655-338.727655S64.527642 216.35456 64.527642 403.12943c0 186.775894 151.952784 338.728678 338.727655 338.728678 86.36909 0 165.276231-32.510438 225.170343-85.913718l38.303374 38.303374-17.34504 17.34504c-7.812943 7.813966-7.812943 20.48352 0 28.297486l215.051891 215.052914c3.753487 3.751441 8.841366 5.860475 14.149255 5.860475 5.306866 0 10.395768-2.108011 14.149255-5.860475l62.334697-62.334697C962.883037 884.794541 962.883037 872.124987 955.069071 864.311021zM104.546078 403.12943c0-164.709319 133.9999-298.709219 298.709219-298.709219s298.709219 133.9999 298.709219 298.709219S567.964616 701.839673 403.255297 701.839673 104.546078 567.838749 104.546078 403.12943zM878.585119 912.496463 691.829691 725.741036l34.036187-34.036187 186.755428 186.755428L878.585119 912.496463z"
-                        p-id="5041"></path>
-                </svg>
+              
             </div>
         </div>
         <!-- 中间轮播图的盒子 -->
@@ -71,26 +72,26 @@
         </div>
         <!-- 瀑布流的盒子 -->
         <div class="box3" v-for="(item, index) in fallsList.fallsList" :key="item.index">       
-                    <div>{{fallsList.fallsList[1].topics[1]}}</div>
+                    <!-- <div>{{item}}</div> -->
             <!-- <div class="text-3">足够用心才足够特别-</div> -->
-            <div class="box4" >
-              <div>{{2%item.topics.indexOf("item")}}</div>
-                <ul class="img-wrapper" v-for="(item1,index) in item" >
-                    <!-- <div>{{item1}}</div> -->
+            <div class="box4" v-for="(item1,index) in item.topics" >
+                
+                <ul class="img-wrapper" > 
+                    <!-- <div>{{fallsList.fallsList}}</div> -->
                     <!-- 左侧 -->
-                    <li class="li" v-for="(item2,index) in item">
-
+                    <li class="li">
+                        <!-- <div>{{item1}}</div> -->
                         <!-- 大图 -->
-                        <img :src="item2.picUrl" alt="">
+                        <img :src="item1.picUrl" alt="">
                         <!-- 文字 -->
-                        <text class="li-text1">{{item2.title}}</text>
+                        <text class="li-text1">{{item1.title}}</text>
 
-                        <!-- 下边的盒子 -->a
+                        <!-- 下边的盒子 -->
                         <div class="bottom">
 
                             <!-- 头像 -->
                             <img :src="item1.avatar" alt="" class="li-img">
-                            <text class="text-2">{{item2.nickname}}</text>
+                            <text class="text-2">{{item1.nickname}}</text>
                             <!--图标 浏览量 -->
                             <svg t="1669440640506" class="icon" viewBox="0 0 1024 1024" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg" p-id="2423" width="15" height="15">
@@ -101,7 +102,36 @@
                                     d="M512 345.6c-96 0-169.6 76.8-169.6 169.6 0 96 76.8 169.6 169.6 169.6 96 0 169.6-76.8 169.6-169.6C681.6 422.4 604.8 345.6 512 345.6zM512 640c-67.2 0-121.6-54.4-121.6-121.6 0-67.2 54.4-121.6 121.6-121.6 67.2 0 121.6 54.4 121.6 121.6C633.6 582.4 579.2 640 512 640z"
                                     p-id="2425"></path>
                             </svg>
-                            <text class="li-text2">{{item2.readCount}}</text>
+                            <text class="li-text2">{{item1.readCount}}</text>
+                        </div>
+                    </li>
+                    
+                    <!-- 右侧 -->
+                  
+                    <li class="li" >
+                        <!-- 大图 -->
+                        <!-- <div>{{item}}</div> -->
+                        <img :src="item1.picUrl" alt="">
+                        <!-- 文字 -->
+                        <text class="li-text1">{{item1.subTitle}}</text>
+
+                        <!-- 下边的盒子 -->
+                        <div class="bottom">
+
+                            <!-- 头像 -->
+                            <img :src="item1.avatar" class="li-img">
+                            <text class="text-2">{{item.look.topicId}}</text>
+                            <!--图标 浏览量 -->
+                            <svg t="1669440640506" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="2423" width="15" height="15">
+                                <path
+                                    d="M515.2 224c-307.2 0-492.8 313.6-492.8 313.6s214.4 304 492.8 304 492.8-304 492.8-304S822.4 224 515.2 224zM832 652.8c-102.4 86.4-211.2 140.8-320 140.8s-217.6-51.2-320-140.8c-35.2-32-70.4-64-99.2-99.2-6.4-6.4-9.6-12.8-16-19.2 3.2-6.4 9.6-12.8 12.8-19.2 25.6-35.2 57.6-70.4 92.8-102.4 99.2-89.6 208-144 329.6-144s230.4 54.4 329.6 144c35.2 32 64 67.2 92.8 102.4 3.2 6.4 9.6 12.8 12.8 19.2-3.2 6.4-9.6 12.8-16 19.2C902.4 585.6 870.4 620.8 832 652.8z"
+                                    p-id="2424"></path>
+                                <path
+                                    d="M512 345.6c-96 0-169.6 76.8-169.6 169.6 0 96 76.8 169.6 169.6 169.6 96 0 169.6-76.8 169.6-169.6C681.6 422.4 604.8 345.6 512 345.6zM512 640c-67.2 0-121.6-54.4-121.6-121.6 0-67.2 54.4-121.6 121.6-121.6 67.2 0 121.6 54.4 121.6 121.6C633.6 582.4 579.2 640 512 640z"
+                                    p-id="2425"></path>
+                            </svg>
+                            <text class="li-text2">{{item.look.readCount}}</text>
                         </div>
                     </li>
                 </ul>
@@ -109,6 +139,7 @@
             </div>
 
         </div>
+    
         <!-- console.log(navList); -->
 
     </div>
@@ -118,8 +149,10 @@
 //引入仓库
 // 引入仓库
 //引入钩子
-import { onMounted,ref } from 'vue'
+import { onMounted} from 'vue'
 import { useUserInfoStore } from '../../store/userinfo'
+import { useRoute, useRouter } from 'vue-router';
+const router = useRouter()
 const userInfoStore = useUserInfoStore()
 //轮播图的数据
 const navList = userInfoStore
@@ -134,8 +167,15 @@ onMounted(() => {
     //让仓库发请求获取瀑布流的数据 
     userInfoStore.getimage()
 })
-
-
+const gohome=()=>{
+    router.push('/')
+}
+const gosearch=()=>{
+    router.push('/search')
+}
+const gogooddetail=()=>{
+    router.push('/goodsdetail')
+}
 </script>
 
 <style scoped>
@@ -162,9 +202,9 @@ onMounted(() => {
 }
 
 .svg-2 {
-    margin: auto;
+    
     line-height: 50px;
-    display: flex;
+    /* display: flex; */
 }
 
 .gg img {
@@ -173,21 +213,21 @@ onMounted(() => {
 }
 
 .box1 {
-    height: 40px;
-    width: 100%;
+    height: 45px;
+    width: 750px;
     /* background: pink; */
     display: flex;
-    line-height: 40px;
+    line-height: 45px;
 }
 
 .icon-1 {
-    padding: 0px 140px 0px 10px;
+    padding: 0px 130px 0px 10px;
 
 }
 
 .text {
     padding: 0px 50px 0px 0px;
-    font-size: 20px;
+    font-size: 20px
 }
 
 
@@ -294,7 +334,7 @@ onMounted(() => {
 /* ul */
 .img-wrapper {
     column-count: 2;
-    /* column-gap: 10px; */
+    column-gap: 10px;
     counter-reset: count;
     width: 100%;
     padding: 0px 5px;
@@ -341,7 +381,7 @@ onMounted(() => {
 .img-wrapper>li {
     border-radius: 5%;
     width: 50%;
-    height: 100%;
+    /* height: 100%; */
     display: block;
     background: rgb(255, 255, 255);
     margin-top: 10px;
@@ -372,7 +412,7 @@ onMounted(() => {
 }
 
 .icon-3 {
-    padding: 0px 0px 0px 20px;
+    padding: 0px 20px 0px 25px;
 }
 
 .bottom text {

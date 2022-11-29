@@ -12,16 +12,17 @@ const service = axios.create({
 });
 
 // 添加请求拦截器
-service.interceptors.request.use(
-	(config) => {
-		//uuid:插件生成用户(未登录)临时身份(唯一)
-	 config.headers.userTempId = getUserUUID();
-	
-   // config.headers.token = token;
-		//请求携带token[pinia小仓库里面]
-		return config;
-	}
-);
+service.interceptors.request.use((config) => {
+	//uuid:插件生成用户(未登录)临时身份(唯一)
+	// config.headers.userTempId = getUserUUID();
+
+	//如果登录成了vuex仓库就有了token，登录已有其余的请求需要请求头携带token
+	// if (store.state.user.token) {
+	// 	config.headers.token = store.state.user.token;
+	// }
+	//请求携带token[pinia小仓库里面]
+	return config;
+});
 
 // 添加响应拦截器
 service.interceptors.response.use(
@@ -29,16 +30,20 @@ service.interceptors.response.use(
 	async (response) => {
 		// 对响应数据做点什么
 		const res = response.data;
-		// if (!res || res.code !== 200) { /* 成功数据的code值为20000/200 */
-		if (!res) { /* 成功数据的code值为20000/200 */
-			//统一的错误提示
-			ElMessage({
-				message: (typeof res.data == 'string' && res.data) || res.message || 'Error',
-				type: 'error',
-				duration: 5 * 1000
-			})
-
-		
+		// if (!res || res.code !== 200) {
+			/* 成功数据的code值为20000/200 */
+			if (!res) {
+				/* 成功数据的code值为20000/200 */
+				//统一的错误提示
+				ElMessage({
+					message:
+						(typeof res.data == "string" && res.data) ||
+						res.message ||
+						"Error",
+					type: "error",
+					duration: 5 * 1000,
+				});
+			// }
 			return Promise.reject(service.interceptors.response);
 		} else {
 			return res.data; /* 返回成功响应数据中的data属性数据 */
