@@ -258,17 +258,29 @@
   </div>
 </template>
 <script setup >
-import { onMounted,ref } from "vue";
+//引入请求
+import { ref, onMounted } from "vue";
+import { reqDetail } from '../../api/category/index';
 import {reqGoodDetail} from '@/api/GoodsDetail/index';
-
+//引入路由
+import { useRouter } from 'vue-router';
 // 商品数据
 let goodsDetail= ref({});
 // 商品Id
 let skuId = ref(2);
+//创建路由对象
+const router = new useRouter();
+onMounted(async () => {
+   //挂载完毕后发请求
+   //收集参数
+   let timestamp = ref(1669640628008);
+   let id = router.currentRoute.value.query.id;
+   let result = await reqDetail(timestamp.value, id);
+   console.log(result);
 
-onMounted(() => {
-// 按钮显示与隐藏回调
-  showOrHidden();
+
+  // 按钮显示与隐藏回调
+  //showOrHidden();
   getgoodsDetail(skuId.value);
 });
 

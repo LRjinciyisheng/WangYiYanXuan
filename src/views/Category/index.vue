@@ -1,5 +1,15 @@
 <template>
   <div class="category">
+    <!-- 搜索输入框 -->
+    <div class="search-input">
+      <el-input
+        class="w-50 m-2"
+        size="default"
+        placeholder="搜索商品,共130551款好物"
+        :prefix-icon="Search"
+        @focus="focus1"
+      />
+    </div>
     <el-tabs @tab-click="tabClick" :tab-position="tabPosition" style="border: 0" class="demo-tabs">
       <el-tab-pane  class="el-tabs-content" :label="item.name" v-for="(item, index) in categoryL1List" :key="item.id">
         <Card v-if="onlyId == item.id" :current="current" :categoryGroupList="categoryGroupList"></Card>
@@ -10,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { Search } from "@element-plus/icons-vue";
 //引入路由
 import { useRouter } from 'vue-router';
 import { ref, onMounted, nextTick, reactive } from 'vue'
@@ -41,7 +52,7 @@ onMounted(() => {
   //通知pinia仓库发请求 拿刷新后的展示的tab数据 可以把categoryId传给card
   getRecomAndCate();
   // console.log(111);
-  console.log(router, 111);
+  // console.log(router, 111);
 })
 
 //获取推荐和商品分类的数据
@@ -73,16 +84,21 @@ const tabClick = (pane) => {
   router.push({
     path:"/category",
     query: {categoryId : result.id},
-  })
-  
+  });
 }
+
+const focus1 = () => {
+    router.push({
+      path:"/search"
+    });
+}  
 
 </script>
 
 <style scoped lang="less">
 .category{
   width: 375px;
-  height: 667px;
+  height: 652px;
 
 }
 .demo-tabs{
@@ -108,8 +124,13 @@ const tabClick = (pane) => {
 :deep(.el-tabs__item.is-active){
   color: #ab2b2b;
 }
-
-
+.search-input {
+  background: rgb(248, 251, 253);
+  display: flex;
+  white-space: nowrap; //文字不换行
+  padding: 15px;
+  text-align: center;
+}
 
 
 </style>

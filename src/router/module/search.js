@@ -11,3 +11,4 @@ const SearchRoutes = [
   },
 ];
 export default SearchRoutes;
+

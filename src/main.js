@@ -6,6 +6,10 @@ import ElementPlus from 'element-plus'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import 'element-plus/dist/index.css'
+//vant的引入
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
 import "./index.css";
 import App from "./App.vue";
 import "reset-css";
@@ -18,6 +22,7 @@ const app = createApp(App);
 app.use(pinia)
     .use(router)
     .use(ElementPlus, { size: "small", zIndex: 3000, locale: zhCn })
+    .use(Vant)
   .mount("#app");
 // 图标并进行全局注册
 

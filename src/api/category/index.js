@@ -21,16 +21,16 @@ export const reqRecomAndCate = (timestamp, categoryId) => request({
   }
 })
 
-//
-export const reqListById = (timestamp, categoryId) => request({
-  method:'get',
-  url:'/item/cateList.json',
-  type:'you163',
-  params:{
-    timestamp,
-    categoryId
-  }
-})
+// //
+// export const reqListById = (timestamp, categoryId) => request({
+//   method:'get',
+//   url:'/item/cateList.json',
+//   type:'you163',
+//   params:{
+//     timestamp,
+//     categoryId
+//   }
+// })
 
 
 export const reqProductList = (timestamp, categoryType, subCategoryId, categoryId) => request({
@@ -44,3 +44,16 @@ export const reqProductList = (timestamp, categoryType, subCategoryId, categoryI
     categoryId
   }
 })
+
+
+export const reqDetail = (timestamp, id) => request({
+  method:'get',
+  url:'/detail.json',
+  type:'atguigu',
+  params:{
+    timestamp, 
+    id,
+  }
+})
+
+
