@@ -184,7 +184,7 @@ import Good from "./good/index.vue";
 import { Search } from "@element-plus/icons-vue";
 import { ref, onMounted, watch, nextTick } from "vue";
 import type { TabsPaneContext } from "element-plus";
-import { useRouter, useRoute } from "vue-router";
+
 // 引入仓库
 import { useHomeStore } from "../../stores/home";
 
@@ -192,7 +192,6 @@ import { useHomeStore } from "../../stores/home";
 const categoryId = ref("-1");
 const homeStore = useHomeStore();
 const router = useRouter();
-const route = useRoute();
 const showToTop = ref(false);
 const scroll = ref();
 // 页面挂载 获取首页数据
@@ -226,12 +225,6 @@ const changeCategoryId = ({ name, title, event, disabled }) => {
     homeStore.getOtherList(name);
   }
 };
-//点击input跳转搜索
-const goSearch = () => {
-  router.push({
-    name: "Search",
-  });
-};
 //点击跳转登录
 const goLogin = () => {
   router.push({
@@ -239,8 +232,6 @@ const goLogin = () => {
   });
 };
 //点击input框跳转到搜索页
-
-const router = useRouter();
 const handleGoSearch=()=>{
   router.push("/search")
 }
