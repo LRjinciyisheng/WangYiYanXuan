@@ -258,11 +258,23 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted } from "vue";
+//引入请求
+import { reqDetail } from '../../api/category/index';
+import { ref, onMounted } from "vue";
+//引入路由
+import { useRouter } from 'vue-router';
+//创建路由对象
+const router = new useRouter();
+onMounted(async () => {
+   //挂载完毕后发请求
+   //收集参数
+   let timestamp = ref(1669640628008);
+   let id = router.currentRoute.value.query.id;
+   let result = await reqDetail(timestamp.value, id);
+   console.log(result);
 
-onMounted(() => {
   // 按钮显示与隐藏回调
-  showOrHidden();
+  // showOrHidden();
 });
 // 按钮显示与隐藏回调
 const showOrHidden = () => {

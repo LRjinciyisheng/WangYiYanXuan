@@ -11,7 +11,7 @@
           <!-- <router-link to="/category/list">
             <img :src="it.wapBannerUrl"/>
           </router-link> -->
-          <img @click="turnList(it.id)" :src="it.wapBannerUrl"/>
+          <img @click="turnList(it.id, it.name)" :src="it.wapBannerUrl"/>
           <span class="title">{{ it.name }}</span>
         </div>
       </div>
@@ -48,7 +48,7 @@ onMounted(() => {
     // console.log(categoryGroupList.value,'是我喔');
 })
  
-const turnList = (id) => {
+const turnList = (id, name) => {
   let categoryId = router.currentRoute.value.query.categoryId;
 
   //点击某一个分类商品图片时进行路由跳转
@@ -58,6 +58,7 @@ const turnList = (id) => {
       categoryId,
       subCategoryId: id,
       categoryType: 0,
+      name,
     }
   })
 }
